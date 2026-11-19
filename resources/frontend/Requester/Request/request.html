@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request</title>
+    <link rel="stylesheet" href="../../Shared/fonts.css">
+    <link rel="stylesheet" href="request.css">
+    <link rel="stylesheet" href="../../Shared/print.css">
+    <link rel="stylesheet" href="../../Shared/workflow.css">
+    <link rel="stylesheet" href="../../Shared/sidebar.css">
+    <link rel="stylesheet" href="../../Shared/responsive.css">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <img src="../../Admin/Login/neu-logo.png" alt="NEU Logo" class="sidebar-logo">
+            <div class="sidebar-title"><h2>Custodian Management System</h2></div>
+        </div>
+        <ul>
+            <li><a href="../RequesterDashboard/dashboard.html">Dashboard</a></li>
+            <li class="active"><a href="../Request/request.html" aria-current="page">Create Requisition</a></li>
+            <li><a href="../RequesterMyRequests/myrequests.html">My Requests</a></li>
+            <li><a href="../RequesterHistory/history.html">History</a></li>
+            <li><a href="../RequesterNotifications/notifications.html">Notifications</a></li>
+            <li><a href="../RequesterInventory/inventory.html">My Inventory</a></li>
+            <li class="sidebar-logout"><a role="button" tabindex="0">Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+        <div class="navbar">
+            <h2>Create Requisition</h2>
+            <span>Requester</span>
+        </div>
+
+        <!-- TABS -->
+        <div class="tabs">
+            <button type="button" class="tab" data-type="requisition">Requisition Form</button>
+            <button type="button" class="tab" data-type="pullout">Pull-Out Request</button>
+            <button type="button" class="tab" data-type="receipt">Acknowledgment Receipt</button>
+        </div>
+
+        <!-- FORM CARD (content changes per tab) -->
+        <section class="card">
+            <div class="card-header">
+                <div>
+                    <h3 id="formTitle"></h3>
+                    <p id="formDesc"></p>
+                </div>
+                <div class="control-box">
+                    <label for="controlNo">Control No.</label>
+                    <input type="text" id="controlNo" readonly>
+                    <small class="auto-note">Automatic</small>
+                </div>
+            </div>
+
+            <div class="header-grid" id="headerFields"></div>
+
+            <div class="table-wrap">
+                <table class="items-table">
+                    <thead id="itemHead"></thead>
+                    <tbody id="itemRows"></tbody>
+                    <tfoot id="itemFoot"></tfoot>
+                </table>
+            </div>
+
+            <div class="actions">
+                <button type="button" class="btn btn-light" id="addRowBtn">+ Add Row</button>
+                <div class="actions-right">
+                    <button type="button" class="btn btn-light" id="clearBtn">Clear</button>
+                    <button type="button" class="btn btn-light" id="previewBtn">Preview</button>
+                    <button type="button" class="btn btn-light" id="draftBtn">Save Draft</button>
+                    <button type="button" class="btn btn-green" id="saveBtn">Save</button>
+                    <button type="button" class="btn btn-dark" id="savePrintBtn">Save &amp; Print</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SAVED FORMS (all 3 types) -->
+        <section class="card">
+            <div class="card-header">
+                <div>
+                    <h3>Saved Forms</h3>
+                    <p>All your saved forms. Click Print to print a copy for signatures.</p>
+                </div>
+            </div>
+            <div class="table-wrap">
+                <table class="list-table">
+                    <thead>
+                        <tr>
+                            <th>Form</th>
+                            <th>Control No.</th>
+                            <th>Details</th>
+                            <th>Items</th>
+                            <th>Date Saved</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="savedRows"></tbody>
+                </table>
+                <p id="emptyMsg" class="empty-msg">No forms saved yet.</p>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<!-- PRINT AREA (looks like the paper forms) -->
+<div id="printArea"></div>
+
+<script src="../../Shared/qr.js"></script>
+<script src="../../Shared/print.js"></script>
+<script src="../../Shared/users.js"></script>
+<script src="../../Shared/settings.js"></script>
+<script src="../../Shared/permissions.js"></script>
+<script src="../../Shared/audit.js"></script>
+<script src="../../Shared/stock.js"></script>
+<script src="../../Shared/units.js"></script>
+<script src="../../Shared/signatures.js"></script>
+<script src="../../Shared/realtime.js"></script>
+<script src="../../Shared/esign.js"></script>
+<script src="../../Shared/workflow.js"></script>
+<script src="../../Shared/mockdata.js"></script>
+<script src="../../Shared/chatbot.js"></script>
+<script src="../../Shared/sidebar.js"></script>
+<script src="../../Shared/responsive.js"></script>
+<script src="request.js"></script>
+</body>
+</html>

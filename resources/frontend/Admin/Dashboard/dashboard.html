@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="../../Shared/fonts.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="../../Shared/workflow.css">
+    <link rel="stylesheet" href="../../Shared/sidebar.css">
+    <link rel="stylesheet" href="../../Shared/responsive.css">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+<aside class="sidebar">
+
+    <!-- Sidebar Logo and Title -->
+    <div class="sidebar-brand">
+
+        <img
+            src="../Login/neu-logo.png"
+            alt="NEU Logo"
+            class="sidebar-logo"
+        >
+
+        <div class="sidebar-title">
+            <h2>Custodian Management System </h2>
+        </div>
+
+    </div>
+
+        <ul>
+            <li class="active"><a href="../Dashboard/dashboard.html" aria-current="page">Dashboard</a></li>
+            <li><a href="../RequestManagement/requestmanagement.html">Request Management</a></li>
+            <li><a href="../InventoryManagement/inventorymanagement.html">Inventory Management</a></li>
+            <li><a href="../Assets/assets.html">Assets</a></li>
+            <li><a href="../AnnualInventory/annualinventory.html">Annual Inventory</a></li>
+            <li><a href="../Issuance/issuance.html">Issuance</a></li>
+            <li><a href="../ReleaseQueue/releasequeue.html">Release Queue</a></li>
+            <li><a href="../PullOut/pullout.html">Pull-Out Management</a></li>
+            <li><a href="../Reports/reports.html">Reports</a></li>
+            <li><a href="../Users/users.html">Users</a></li>
+            <li><a href="../AuditTrail/audittrail.html">Audit Trail</a></li>
+            <li><a href="../Settings/settings.html">System Settings</a></li>
+            <li class="sidebar-logout"><a role="button" tabindex="0">Logout</a></li>
+        </ul>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="navbar">
+
+            <h1>Dashboard</h1>
+
+            <div class="profile">
+                <span>Admin</span>
+            </div>
+
+        </header>
+
+
+        <section class="cards">
+            <div class="card">
+                <h3>Pending Requests</h3>
+                <p id="pendingCount">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Approved / Ready for Release</h3>
+                <p id="approvedCount">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Released</h3>
+                <p id="releasedCount">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Forms</h3>
+                <p id="totalCount">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Assets</h3>
+                <p id="assetCount">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Users</h3>
+                <p id="userCount">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Low Stock</h3>
+                <p id="lowStockCount">0</p>
+            </div>
+        </section>
+
+<section class="wf-panel" id="queuePanel">
+            <h2 id="queueTitle">Needs your action</h2>
+            <div class="wf-tablewrap"><table class="wf-table"><thead><tr><th>Requisition No.</th><th>Department / Office</th><th>Requester</th><th>Status</th><th>Action</th></tr></thead><tbody id="queueBody"></tbody></table></div>
+            <div class="wf-pager" id="queuePager"></div>
+        </section>
+
+<section class="chart-section">
+
+    <div class="chart-card">
+
+        <div class="chart-header">
+            <h2>Forms Submitted</h2>
+            <p>Last 6 months, by form type</p>
+        </div>
+
+        <div class="chart-canvas-wrap"><canvas id="dashboardChart"></canvas></div>
+        <p id="chartNote" class="chart-note"></p>
+
+    </div>
+
+</section>
+
+      <section class="table-section">
+            <div class="section-head">
+                <h2>Recent Requests</h2>
+                <button type="button" class="link-btn" id="goRequests">View all</button>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Control No.</th>
+                            <th>Form</th>
+                            <th>Requester</th>
+                            <th>Details</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recentBody"></tbody>
+                </table>
+            </div>
+
+            <p id="noRecent" class="no-recent">
+                No forms yet. Forms submitted by requesters will appear here.
+            </p>
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script src="../../Shared/users.js"></script>
+<script src="../../Shared/settings.js"></script>
+<script src="../../Shared/permissions.js"></script>
+<script src="../../Shared/stock.js"></script>
+<script src="../../Shared/units.js"></script>
+<script src="../../Shared/signatures.js"></script>
+<script src="../../Shared/audit.js"></script>
+<script src="../../Shared/realtime.js"></script>
+<script src="../../Shared/esign.js"></script>
+<script src="../../Shared/workflow.js"></script>
+<script src="../../Shared/mockdata.js"></script>
+<script src="../../Shared/adminnav.js"></script>
+<script src="../../Shared/chatbot.js"></script>
+<script src="../../Shared/sidebar.js"></script>
+<script src="../../Shared/responsive.js"></script>
+<script src="dashboard.js"></script>
+
+</body>
+</html>

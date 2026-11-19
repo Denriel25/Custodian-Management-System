@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+    <link rel="stylesheet" href="../../Shared/fonts.css">
+    <link rel="stylesheet" href="../RequesterDashboard/dashboard.css">
+    <link rel="stylesheet" href="../../Shared/workflow.css">
+    <link rel="stylesheet" href="../../Shared/sidebar.css">
+    <link rel="stylesheet" href="../../Shared/responsive.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <img src="../../Admin/Login/neu-logo.png" alt="NEU Logo" class="sidebar-logo">
+            <div class="sidebar-title"><h2>Custodian Management System</h2></div>
+        </div>
+        <ul>
+            <li><a href="../RequesterDashboard/dashboard.html">Dashboard</a></li>
+            <li><a href="../Request/request.html">Create Requisition</a></li>
+            <li><a href="../RequesterMyRequests/myrequests.html">My Requests</a></li>
+            <li><a href="../RequesterHistory/history.html">History</a></li>
+            <li class="active"><a href="../RequesterNotifications/notifications.html" aria-current="page">Notifications</a></li>
+            <li><a href="../RequesterInventory/inventory.html">My Inventory</a></li>
+            <li class="sidebar-logout"><a role="button" tabindex="0">Logout</a></li>
+        </ul>
+    </aside>
+    <main class="main-content">
+        <nav class="navbar">
+            <div><h2>Notifications</h2><p>Updates about your requisitions</p></div>
+            <div class="user-info"><span class="user-role">Requester</span></div>
+        </nav>
+
+        <section class="wf-panel light" style="margin-top:20px">
+            <h2>Notification List</h2>
+            <div class="wf-tools">
+                <select class="wf-select" id="nFilter"><option value="all">All</option><option value="unread">Unread</option><option value="read">Read</option></select>
+                <button type="button" class="wf-btn" id="markAll">Mark all as read</button>
+                <button type="button" class="wf-btn" id="showMail">Simulated emails</button>
+            </div>
+            <div id="nList"></div>
+            <div class="wf-pager" id="nPager"></div>
+        </section>
+        <p class="wf-note" style="color:#777">Emails are simulated in this frontend phase. Nothing is sent.</p>
+    </main>
+</div>
+<script src="../../Shared/users.js"></script>
+<script src="../../Shared/settings.js"></script>
+<script src="../../Shared/permissions.js"></script>
+<script src="../../Shared/audit.js"></script>
+<script src="../../Shared/stock.js"></script>
+<script src="../../Shared/units.js"></script>
+<script src="../../Shared/realtime.js"></script>
+<script src="../../Shared/esign.js"></script>
+<script src="../../Shared/workflow.js"></script>
+<script src="../../Shared/mockdata.js"></script>
+<script src="../../Shared/chatbot.js"></script>
+<script src="../../Shared/sidebar.js"></script>
+<script src="../../Shared/responsive.js"></script>
+<script src="notifications.js"></script>
+</body>
+</html>

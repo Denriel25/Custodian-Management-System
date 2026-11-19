@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management</title>
+    <link rel="stylesheet" href="../../Shared/fonts.css">
+    <link rel="stylesheet" href="../Dashboard/dashboard.css">
+    <link rel="stylesheet" href="../../Shared/workflow.css">
+    <link rel="stylesheet" href="../../Shared/sidebar.css">
+    <link rel="stylesheet" href="../../Shared/responsive.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <img src="../Login/neu-logo.png" alt="NEU Logo" class="sidebar-logo">
+            <div class="sidebar-title"><h2>Custodian Management System </h2></div>
+        </div>
+        <ul>
+            <li><a href="../Dashboard/dashboard.html">Dashboard</a></li>
+            <li><a href="../RequestManagement/requestmanagement.html">Request Management</a></li>
+            <li class="active"><a href="../InventoryManagement/inventorymanagement.html" aria-current="page">Inventory Management</a></li>
+            <li><a href="../Assets/assets.html">Assets</a></li>
+            <li><a href="../AnnualInventory/annualinventory.html">Annual Inventory</a></li>
+            <li><a href="../Issuance/issuance.html">Issuance</a></li>
+            <li><a href="../ReleaseQueue/releasequeue.html">Release Queue</a></li>
+            <li><a href="../PullOut/pullout.html">Pull-Out Management</a></li>
+            <li><a href="../Reports/reports.html">Reports</a></li>
+            <li><a href="../Users/users.html">Users</a></li>
+            <li><a href="../AuditTrail/audittrail.html">Audit Trail</a></li>
+            <li><a href="../Settings/settings.html">System Settings</a></li>
+            <li class="sidebar-logout"><a role="button" tabindex="0">Logout</a></li>
+        </ul>
+    </aside>
+    <main class="main-content">
+        <header class="navbar"><h1>Inventory Management</h1><div class="profile"><span>Admin</span></div></header>
+
+        <section class="cards">
+            <div class="card"><h3>Consumable Items</h3><p id="cItems">0</p></div>
+            <div class="card"><h3>Low Stock</h3><p id="cLow">0</p></div>
+            <div class="card"><h3>Out of Stock</h3><p id="cOut">0</p></div>
+        </section>
+
+        <section class="wf-panel" id="alertPanel" style="display:none"><h2>Stock alerts</h2><div id="alerts"></div></section>
+
+        <section class="wf-panel">
+            <h2>Consumable Items</h2>
+            <div class="wf-tools">
+                <input class="wf-input" id="iSearch" placeholder="Search item or category...">
+                <select class="wf-select" id="iStatus"><option value="all">All status</option><option>In Stock</option><option>Low Stock</option><option>Out of Stock</option></select>
+                <button type="button" class="wf-btn gold" id="addItem">Add Item</button>
+            </div>
+            <div class="wf-tablewrap"><table class="wf-table"><thead><tr><th>Item</th><th>Category</th><th>Unit</th><th>Quantity</th><th>Reorder level</th><th>Status</th><th>Actions</th></tr></thead><tbody id="iBody"></tbody></table></div>
+            <div class="wf-pager" id="iPager"></div>
+            <p class="wf-note">Equipment (non-consumable) is managed in Assets. Issuing to a requisition is done only through Release in Request Management.</p>
+        </section>
+
+        <section class="wf-panel">
+            <h2>Stock Movement History</h2>
+            <div class="wf-tools">
+                <input class="wf-input" id="mSearch" placeholder="Search item, reason, user...">
+                <select class="wf-select" id="mType"><option value="all">All movements</option><option>Stock In</option><option>Stock Out</option><option>Adjustment</option><option>Release</option><option>Pull-Out</option></select>
+                <input class="wf-input" type="date" id="mFrom" title="From"><input class="wf-input" type="date" id="mTo" title="To">
+                <button type="button" class="wf-btn" id="mCsv">Export CSV</button>
+            </div>
+            <div class="wf-tablewrap"><table class="wf-table"><thead><tr><th>Date</th><th>Item</th><th>Type</th><th>Change</th><th>Before</th><th>After</th><th>Reason / Reference</th><th>By</th></tr></thead><tbody id="mBody"></tbody></table></div>
+            <div class="wf-pager" id="mPager"></div>
+        </section>
+        <p class="wf-note">Frontend simulation with demo data.</p>
+    </main>
+</div>
+<script src="../../Shared/users.js"></script>
+<script src="../../Shared/settings.js"></script>
+<script src="../../Shared/permissions.js"></script>
+<script src="../../Shared/audit.js"></script>
+<script src="../../Shared/stock.js"></script>
+<script src="../../Shared/units.js"></script>
+<script src="../../Shared/realtime.js"></script>
+<script src="../../Shared/esign.js"></script>
+<script src="../../Shared/workflow.js"></script>
+<script src="../../Shared/mockdata.js"></script>
+<script src="../../Shared/adminnav.js"></script>
+<script src="../../Shared/chatbot.js"></script>
+<script src="../../Shared/sidebar.js"></script>
+<script src="../../Shared/responsive.js"></script>
+<script src="inventorymanagement.js"></script>
+</body>
+</html>

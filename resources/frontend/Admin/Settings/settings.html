@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Settings</title>
+    <link rel="stylesheet" href="../../Shared/fonts.css">
+    <link rel="stylesheet" href="../Dashboard/dashboard.css">
+    <link rel="stylesheet" href="../../Shared/workflow.css">
+    <link rel="stylesheet" href="../../Shared/sidebar.css">
+    <link rel="stylesheet" href="../../Shared/responsive.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <img src="../Login/neu-logo.png" alt="NEU Logo" class="sidebar-logo">
+            <div class="sidebar-title"><h2>Custodian Management System </h2></div>
+        </div>
+        <ul>
+            <li><a href="../Dashboard/dashboard.html">Dashboard</a></li>
+            <li><a href="../RequestManagement/requestmanagement.html">Request Management</a></li>
+            <li><a href="../InventoryManagement/inventorymanagement.html">Inventory Management</a></li>
+            <li><a href="../Assets/assets.html">Assets</a></li>
+            <li><a href="../AnnualInventory/annualinventory.html">Annual Inventory</a></li>
+            <li><a href="../Issuance/issuance.html">Issuance</a></li>
+            <li><a href="../ReleaseQueue/releasequeue.html">Release Queue</a></li>
+            <li><a href="../PullOut/pullout.html">Pull-Out Management</a></li>
+            <li><a href="../Reports/reports.html">Reports</a></li>
+            <li><a href="../Users/users.html">Users</a></li>
+            <li><a href="../AuditTrail/audittrail.html">Audit Trail</a></li>
+            <li class="active"><a href="../Settings/settings.html" aria-current="page">System Settings</a></li>
+            <li class="sidebar-logout"><a role="button" tabindex="0">Logout</a></li>
+        </ul>
+    </aside>
+    <main class="main-content">
+        <header class="navbar"><h1>System Settings</h1><div class="profile"><span>Admin</span></div></header>
+
+        <div class="wf-banner">
+            <b>Saved on the server.</b> These settings are stored in the database and apply to every user.
+            <span class="wf-tag sim">Simulated</span> = works in the browser now.
+            <span class="wf-tag future">Future backend</span> = needs Laravel / MySQL later (real email, file storage, account security).
+            Settings never change or delete records.
+        </div>
+
+        <div class="wf-tabs" id="tabs">
+            <button type="button" class="wf-tabbtn on" data-tab="general">General</button>
+            <button type="button" class="wf-tabbtn" data-tab="inventory">Inventory</button>
+            <button type="button" class="wf-tabbtn" data-tab="notifications">Notifications</button>
+            <button type="button" class="wf-tabbtn" data-tab="account">Account &amp; Access</button>
+            <button type="button" class="wf-tabbtn" data-tab="appearance">Appearance</button>
+            <button type="button" class="wf-tabbtn" data-tab="data">Data Management</button>
+        </div>
+
+        <section class="wf-panel" id="panel"></section>
+    </main>
+</div>
+<script src="../../Shared/users.js"></script>
+<script src="../../Shared/settings.js"></script>
+<script src="../../Shared/permissions.js"></script>
+<script src="../../Shared/audit.js"></script>
+<script src="../../Shared/stock.js"></script>
+<script src="../../Shared/units.js"></script>
+<script src="../../Shared/pullout.js"></script>
+<script src="../../Shared/realtime.js"></script>
+<script src="../../Shared/esign.js"></script>
+<script src="../../Shared/workflow.js"></script>
+<script src="../../Shared/release.js"></script>
+<script src="../../Shared/mockdata.js"></script>
+<script src="../../Shared/adminnav.js"></script>
+<script src="../../Shared/chatbot.js"></script>
+<script src="../../Shared/sidebar.js"></script>
+<script src="../../Shared/responsive.js"></script>
+<script src="systemsettings.js"></script>
+</body>
+</html>

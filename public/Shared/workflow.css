@@ -1,0 +1,127 @@
+/* NEU Custodian Management System - styles of the requisition workflow screens (dark + gold #edae0f) */
+.wf-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
+.st-pending{background:rgba(237,174,15,.15);color:#edae0f}
+.st-ready{background:rgba(52,152,219,.18);color:#6cb8f0}
+.st-released{background:rgba(46,204,113,.18);color:#4fd88a}
+.st-completed{background:rgba(46,204,113,.3);color:#7ff0b0}
+.st-rejected{background:rgba(231,76,60,.2);color:#ff8a7a}
+.st-draft{background:rgba(160,160,160,.2);color:#ccc}
+
+.wf-back{position:fixed;inset:0;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;z-index:5000;padding:14px;font-family:'Poppins',sans-serif}
+.wf-modal{background:#1a1a1a;color:#eee;border:1px solid #333;border-radius:14px;width:100%;max-width:560px;max-height:92vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.wf-modal.wide{max-width:900px}
+.wf-mhead{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid #333}
+.wf-mhead h3{color:#edae0f;font-size:17px}
+.wf-x{background:none;border:none;color:#aaa;font-size:26px;cursor:pointer;line-height:1}
+.wf-mbody{padding:18px 20px;overflow:auto;font-size:13px;line-height:1.5}
+.wf-mfoot{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;padding:14px 20px;border-top:1px solid #333}
+.wf-btn{padding:9px 16px;border-radius:8px;border:1px solid #444;background:#2a2a2a;color:#eee;cursor:pointer;font-size:13px;font-family:inherit}
+.wf-btn:hover{border-color:#edae0f}
+.wf-btn.gold{background:#edae0f;color:#000;border-color:#edae0f;font-weight:600}
+.wf-btn.red{background:#c0392b;border-color:#c0392b;color:#fff}
+.wf-btn.green{background:#27ae60;border-color:#27ae60;color:#fff}
+.wf-btn:disabled{opacity:.4;cursor:not-allowed}
+.wf-btn.sm{padding:5px 12px;font-size:12px}
+
+.wf-row{display:flex;gap:10px;padding:6px 0;border-bottom:1px solid #2b2b2b}
+.wf-row strong{min-width:150px;color:#bbb;font-weight:500}
+.wf-note{font-size:12px;color:#aaa;margin-bottom:10px}
+.wf-empty{padding:22px;text-align:center;color:#888}
+.wf-tablewrap{overflow-x:auto;margin:10px 0}
+.wf-table{width:100%;border-collapse:collapse;font-size:13px}
+.wf-table th{text-align:left;padding:9px 10px;background:#242424;color:#edae0f;font-weight:600;white-space:nowrap}
+.wf-table td{padding:9px 10px;border-bottom:1px solid #2b2b2b;vertical-align:middle}
+.wf-table input[type=number]{width:80px;padding:5px;border-radius:6px;border:1px solid #444;background:#111;color:#fff}
+.wf-input,.wf-select,.wf-text{width:100%;padding:9px 12px;border-radius:8px;border:1px solid #444;background:#111;color:#fff;font-size:13px;font-family:inherit}
+.wf-text{min-height:70px;resize:vertical}
+
+.wf-progress{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:12px 0}
+.wf-step{background:#222;border:1px solid #333;border-radius:10px;padding:10px;text-align:center;font-size:11px;color:#999}
+.wf-step i{display:block;font-style:normal;font-size:18px}
+.wf-step b{display:block;color:#ddd;font-weight:500;margin-top:2px}
+.wf-step.done{border-color:#27ae60;color:#4fd88a}
+.wf-step.done i{color:#4fd88a}
+.wf-step.bad{border-color:#c0392b;color:#ff8a7a}
+
+.wf-sigs{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:12px 0}
+.wf-sig{background:#222;border:1px solid #333;border-radius:10px;padding:10px;text-align:center}
+.wf-sig b{color:#edae0f;font-size:12px;display:block;margin-bottom:6px}
+.wf-sig img{max-width:100%;max-height:70px;background:#fff;border-radius:6px;padding:3px}
+.wf-sig .nm{font-weight:600;margin-top:4px}
+.wf-sig small{display:block;color:#999;font-size:11px}
+.wf-none{color:#777;padding:18px 0;font-size:12px}
+
+.wf-mail{border:1px solid #333;border-radius:10px;padding:10px 12px;margin-bottom:8px;background:#212121}
+.wf-mail small{display:block;color:#999;margin:2px 0 6px}
+
+.wf-toasts{position:fixed;right:18px;top:18px;display:flex;flex-direction:column;gap:8px;z-index:9000}
+.wf-toast{background:#27ae60;color:#fff;padding:11px 16px;border-radius:10px;font-size:13px;max-width:320px;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.wf-toast.bad{background:#c0392b}
+
+.wf-tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.wf-tools .wf-input,.wf-tools .wf-select{width:auto;min-width:150px;flex:1}
+.wf-pager{display:flex;gap:6px;align-items:center;justify-content:flex-end;margin-top:12px;font-size:12px;color:#aaa}
+.wf-pager button{padding:5px 11px;border-radius:6px;border:1px solid #444;background:#222;color:#eee;cursor:pointer}
+.wf-pager button:disabled{opacity:.35;cursor:default}
+.wf-panel{background:#1e1e1e;border:1px solid #2f2f2f;border-radius:14px;padding:18px;margin-bottom:18px;color:#eee}
+.wf-panel h2{font-size:16px;color:#edae0f;margin-bottom:12px}
+.wf-grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.wf-bar{height:10px;background:#2c2c2c;border-radius:6px;overflow:hidden;margin-top:4px}
+.wf-bar span{display:block;height:100%;background:#edae0f}
+.wf-barrow{font-size:12px;margin-bottom:10px;color:#ccc;display:flex;justify-content:space-between}
+.wf-loading{padding:30px;text-align:center;color:#edae0f}
+.wf-list-item{padding:10px 0;border-bottom:1px solid #2b2b2b;font-size:13px}
+.wf-list-item small{display:block;color:#888}
+.wf-lock{background:#2a2118;border:1px solid #6b5316;color:#edae0f;border-radius:8px;padding:10px 12px;font-size:12px;margin-top:10px}
+@media(max-width:800px){.wf-grid2{grid-template-columns:1fr}.wf-row{flex-direction:column;gap:2px}}
+@media print{.wf-back,.wf-toasts{display:none!important}}
+
+/* light variant for the Requester pages (they use the white / green layout) */
+.wf-panel.light{background:#fff;color:#222;border-color:#e5e5e5}
+.wf-panel.light h2{color:#198754}
+.wf-panel.light .wf-table th{background:#f1f3f2;color:#198754}
+.wf-panel.light .wf-table td{border-bottom-color:#eee}
+.wf-panel.light .wf-input,.wf-panel.light .wf-select{background:#fff;color:#222;border-color:#ccc}
+.wf-panel.light .wf-btn{background:#f5f5f5;color:#222;border-color:#ccc}
+.wf-panel.light .wf-btn.gold{background:#198754;border-color:#198754;color:#fff}
+.wf-panel.light .wf-pager{color:#666}
+.wf-panel.light .wf-pager button{background:#f5f5f5;color:#222;border-color:#ccc}
+.wf-panel.light .wf-list-item{border-bottom-color:#eee}
+.wf-panel.light .wf-list-item small,.wf-panel.light .wf-note,.wf-panel.light .wf-empty{color:#777}
+.wf-panel.light .wf-step{background:#f7f7f7;border-color:#ddd;color:#888}
+.wf-panel.light .wf-step b{color:#333}
+.wf-panel.light .wf-bar{background:#e6e6e6}
+.wf-panel.light .wf-bar span{background:#198754}
+.wf-panel.light .wf-barrow{color:#444}
+
+/* System Settings page */
+.wf-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.wf-tabbtn{padding:9px 16px;border-radius:8px;border:1px solid #444;background:#1e1e1e;color:#ccc;cursor:pointer;font-size:13px;font-family:inherit}
+.wf-tabbtn.on{background:#edae0f;color:#000;border-color:#edae0f;font-weight:600}
+.wf-field{margin-bottom:14px}
+.wf-field>label{display:block;font-size:12px;color:#bbb;margin-bottom:4px}
+.wf-err{color:#ff8a7a;font-size:12px;min-height:15px;margin-top:3px}
+.wf-hint{color:#888;font-size:11px;margin-top:3px}
+.wf-grid3{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+.wf-switch{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #2b2b2b;font-size:13px;cursor:pointer}
+.wf-switch input{width:18px;height:18px;accent-color:#edae0f}
+.wf-switch small{display:block;color:#888;font-size:11px}
+.wf-tag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:20px;margin-left:6px;vertical-align:middle;font-weight:600}
+.wf-tag.sim{background:rgba(52,152,219,.2);color:#6cb8f0}
+.wf-tag.future{background:rgba(160,160,160,.2);color:#ccc}
+.wf-banner{background:#232018;border:1px solid #6b5316;color:#edae0f;border-radius:10px;padding:12px 14px;font-size:12px;margin-bottom:16px}
+.wf-logo{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.wf-logo .box{width:96px;height:96px;background:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.wf-logo img{max-width:100%;max-height:100%}
+.wf-swatch{display:inline-block;width:18px;height:18px;border-radius:4px;border:1px solid #555;vertical-align:middle;margin-right:6px}
+.wf-yes{color:#4fd88a}.wf-no{color:#777}
+@media(max-width:800px){.wf-grid3{grid-template-columns:1fr}}
+
+/* The fixed side menu was 150vh high, so its own scrollbar never worked and the last items (System Settings, Logout)
+   were unreachable on a normal screen once the menu had more than 8 items. 100vh makes it scroll inside itself.
+   (On a phone the menu is a drawer and responsive.css sets its own height.) */
+.sidebar { height: 100vh; overflow-y: auto; }
+
+/* A flex child is as wide as its content unless min-width is 0. Without this a wide table stretched the whole page
+   (Release Queue, Request Management) instead of scrolling inside its own .wf-tablewrap. */
+.main-content { min-width: 0; }

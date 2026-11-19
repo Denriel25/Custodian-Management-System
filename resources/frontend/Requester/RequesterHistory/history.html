@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>History</title>
+
+    <link
+        rel="stylesheet"
+        href="history.css"
+    >
+    <link rel="stylesheet" href="../../Shared/fonts.css">
+    <link rel="stylesheet" href="../../Shared/workflow.css">
+    <link rel="stylesheet" href="../../Shared/sidebar.css">
+    <link rel="stylesheet" href="../../Shared/responsive.css">
+
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <!-- ========================================
+             SIDEBAR
+        ======================================== -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-brand">
+
+                <img
+                    src="../../Admin/Login/neu-logo.png"
+                    alt="NEU Logo"
+                    class="sidebar-logo"
+                >
+
+                <div class="sidebar-title">
+
+                    <h2>
+                        Custodian Management System
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <ul>
+            <li><a href="../RequesterDashboard/dashboard.html">Dashboard</a></li>
+            <li><a href="../Request/request.html">Create Requisition</a></li>
+            <li><a href="../RequesterMyRequests/myrequests.html">My Requests</a></li>
+            <li class="active"><a href="../RequesterHistory/history.html" aria-current="page">History</a></li>
+            <li><a href="../RequesterNotifications/notifications.html">Notifications</a></li>
+            <li><a href="../RequesterInventory/inventory.html">My Inventory</a></li>
+            <li class="sidebar-logout"><a role="button" tabindex="0">Logout</a></li>
+        </ul>
+
+        </aside>
+
+
+        <!-- ========================================
+             MAIN CONTENT
+        ======================================== -->
+
+        <main class="main-content">
+
+
+            <!-- ========================================
+                 NAVBAR
+            ======================================== -->
+
+            <div class="navbar">
+
+                <h2>
+                    History
+                </h2>
+
+                <span>
+                    Requester
+                </span>
+
+            </div>
+
+
+            <!-- ========================================
+                 HISTORY SECTION
+            ======================================== -->
+
+            <section class="history-section">
+
+                <div class="history-header">
+
+                    <div>
+
+                        <h2>
+                            Transaction History
+                        </h2>
+
+                        <p>
+                            Forms that are already released or rejected, from newest to oldest.
+                        </p>
+
+                    </div>
+
+
+                    <!-- SEARCH -->
+
+                    <div class="filters">
+                        <select id="typeFilter" class="filter-select">
+                            <option value="all">All forms</option>
+                            <option value="requisition">Requisition</option>
+                            <option value="receipt">Acknowledgment Receipt</option>
+                            <option value="pullout">Pull-Out Request</option>
+                        </select>
+                        <input
+                        type="text"
+                        id="searchHistory"
+                        class="search-box"
+                        placeholder="Search history..."
+                    >
+                    </div>
+
+                </div>
+
+
+                <!-- ========================================
+                     HISTORY TABLE
+                ======================================== -->
+
+                <div class="table-container">
+
+                    <table id="historyTable">
+
+                        <thead>
+                            <tr>
+                                <th>
+                                    Control No.
+                                </th>
+                                <th>
+                                    Form
+                                </th>
+                                <th>
+                                    Details
+                                </th>
+                                <th>
+                                    Items
+                                </th>
+                                <th>
+                                    Date
+                                </th>
+                                <th>
+                                    Status
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+
+
+                        <tbody id="historyTableBody">
+                            <!-- Loaded by JavaScript -->
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- ========================================
+                     NO HISTORY
+                ======================================== -->
+
+                <div
+                    id="noHistory"
+                    class="no-history"
+                >
+                    <h3>No Finished Forms Yet</h3>
+                    <p>Forms that are released or rejected will appear here. Forms still in process are in My Requests.</p>
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+    <!-- ========================================
+         TRANSACTION MODAL
+    ======================================== -->
+
+    <div
+        id="transactionModal"
+        class="modal-overlay"
+    >
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <h2>
+                    Transaction Details
+                </h2>
+
+                <button
+                    class="close-btn"
+                    onclick="closeModal()"
+                >
+                    &times;
+                </button>
+
+            </div>
+
+
+            <div
+                class="modal-body"
+                id="transactionDetails"
+            >
+
+                <!-- Details inserted by JavaScript -->
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button
+                    class="close-modal-btn"
+                    onclick="closeModal()"
+                >
+                    Close
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="../../Shared/stock.js"></script>
+<script src="../../Shared/units.js"></script>
+<script src="../../Shared/signatures.js"></script>
+<script src="../../Shared/users.js"></script>
+<script src="../../Shared/settings.js"></script>
+<script src="../../Shared/permissions.js"></script>
+<script src="../../Shared/audit.js"></script>
+<script src="../../Shared/realtime.js"></script>
+<script src="../../Shared/esign.js"></script>
+<script src="../../Shared/workflow.js"></script>
+<script src="../../Shared/mockdata.js"></script>
+<script src="../../Shared/chatbot.js"></script>
+<script src="../../Shared/sidebar.js"></script>
+<script src="../../Shared/responsive.js"></script>
+<script src="history.js"></script>
+
+</body>
+
+</html>

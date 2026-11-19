@@ -1,0 +1,512 @@
+@import url(https://fonts.google.com/share?selection.family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to right, #212121, #000000);
+    color: #333;
+}
+
+/* =========================
+   DASHBOARD CONTAINER
+========================= */
+
+.dashboard-container {
+
+    display: flex;
+
+    width: 100%;
+
+    min-height: 100vh;
+
+}
+/* =========================
+   SIDEBAR
+========================= */
+.sidebar {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 240px;
+
+    height: 150vh;
+
+    background: #212121;
+
+    padding: 10px 5px;
+
+    color: white;
+
+    overflow-y: auto;
+
+}
+
+/* ========================================
+   SIDEBAR BRAND
+======================================== */
+
+.sidebar-brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 10px 10px 20px;
+
+    margin-bottom: 15px;
+
+    border-bottom: 1px solid #333;
+}
+
+
+/* ========================================
+   SIDEBAR LOGO
+======================================== */
+
+.sidebar-logo {
+
+    width: 55px;
+
+    height: 55px;
+
+    object-fit: contain;
+
+    flex-shrink: 0;
+}
+
+
+/* ========================================
+   SIDEBAR BRAND TEXT
+======================================== */
+
+.sidebar-brand-text {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    min-width: 0;
+}
+
+
+.sidebar-brand-text h2 {
+
+    margin: 0;
+
+    padding: 0;
+
+    font-size: 20px;
+
+    line-height: 23px;
+
+    font-weight: 700;
+
+    color: white;
+}
+
+
+.sidebar-brand-text span {
+
+    margin-top: 3px;
+
+    font-size: 9px;
+
+    line-height: 13px;
+
+    color: #999;
+
+    white-space: normal;
+}
+
+
+/* ========================================
+   SIDEBAR MENU
+======================================== */
+
+.sidebar ul {
+
+    list-style: none;
+
+    margin: 15px 0;
+
+    padding: 0;
+}
+
+
+.sidebar ul li {
+
+    padding: 15px;
+
+    margin-bottom: 10px;
+
+    cursor: pointer;
+
+    border-radius: 6px;
+
+    transition: .3s;
+
+    font-size: 14px;
+}
+
+
+.sidebar ul li:hover,
+.sidebar ul li.active {
+
+    background: #edae0f;
+
+    color: #000;
+}
+
+
+/* ========================================
+   MAIN CONTENT
+======================================== */
+
+.main-content {
+
+    flex: 1;
+
+    margin-left: 240px;
+
+    padding: 30px;
+
+}
+
+/* ========================================
+   NAVBAR
+======================================== */
+
+.navbar {
+
+    background: #212121;
+
+    color: white;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    margin-bottom: 25px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #212121;
+    padding: 25px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 30px;
+    font-weight: 600;
+    color: #edae0f;
+}
+
+/* =========================
+   TABLE SECTION
+========================= */
+
+.table-section {
+    background: #212121;
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+}
+
+.table-section h2 {
+    margin-bottom: 20px;
+}
+
+/* =========================
+   TABLE HEADER
+========================= */
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* =========================
+   SEARCH BOX
+========================= */
+
+.search-box {
+    width: 250px;
+    padding: 12px;
+    background: #333;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    outline: none;
+}
+
+.search-box::placeholder {
+    color: #aaa;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+}
+
+table th,
+table td {
+    padding: 15px;
+    text-align: left;
+}
+
+table th {
+    background: #333;
+}
+
+table tr:nth-child(even) {
+    background: #2a2a2a;
+}
+
+table tbody tr:hover {
+    background: #383838;
+    transition: .3s;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+button {
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: .3s;
+}
+
+button:hover {
+    opacity: .85;
+}
+
+/* ========================================
+   CHART SECTION
+======================================== */
+
+.chart-section {
+
+    margin-top: 30px;
+
+}
+
+.chart-card {
+
+    background: #212121;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    color: white;
+
+}
+
+.chart-header {
+
+    margin-bottom: 20px;
+
+}
+
+.chart-header h2 {
+
+    margin-bottom: 5px;
+
+}
+
+.chart-header p {
+
+    color: #999;
+
+    font-size: 14px;
+
+}
+
+#dashboardChart {
+
+    width: 100% !important;
+
+    height: 400px !important;
+
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+    .dashboard-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+    }
+
+    .main-content {
+        padding: 15px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .table-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+}
+
+/* ========================================
+   CONNECTED TO REQUESTER FORMS
+======================================== */
+
+.section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-head h2 {
+    margin-bottom: 0;
+}
+
+.link-btn {
+    background: transparent;
+    border: 1px solid #edae0f;
+    color: #edae0f;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.link-btn:hover {
+    background: #edae0f;
+    color: #000;
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+.status {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.status.pending  { background: #ffc107; color: #000; }
+.status.approved { background: #28a745; color: #fff; }
+.status.released { background: #17a2b8; color: #fff; }
+.status.rejected { background: #dc3545; color: #fff; }
+
+.no-recent,
+.chart-note {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    color: #aaa;
+}
+
+
+/* six summary cards */
+.cards {
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+}
+
+
+/* ===== chart sizing (the chart fills a box of fixed height, so it can never grow or collapse) ===== */
+.chart-canvas-wrap {
+    position: relative;
+    width: 100%;
+    height: 320px;
+}
+
+.chart-canvas-wrap canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* the browser-drawn fallback keeps its own height */
+.chart-canvas-wrap.fallback {
+    height: auto;
+}
+
+.chart-canvas-wrap.fallback canvas {
+    height: auto !important;
+}
+
+.chart-note {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+    .chart-canvas-wrap { height: 260px; }
+}

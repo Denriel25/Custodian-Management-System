@@ -1,0 +1,333 @@
+/* ========================================
+   NEU CUSTODIAN MANAGEMENT SYSTEM
+   SHARED RESPONSIVE STYLES (phone, tablet and desktop)
+
+   On a phone or tablet (900px wide or less):
+     - the side menu becomes a drawer opened with the menu button (top left)
+     - the content uses the whole width
+   On a phone (700px wide or less):
+     - the tables become cards: each row is a card, each cell has its label
+     - forms and windows use one column and the full width
+   On a desktop nothing changes.
+
+   Load this file LAST in the <head> of the page (after the page's own css).
+   Needs Shared/responsive.js (the menu button and the table labels).
+   ======================================== */
+
+/* the menu button and the dark layer exist only for small screens */
+.rs-burger { display: none; }
+.rs-overlay { display: none; }
+.rs-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+
+/* laptops and tablets that are not very wide: a wide list scrolls inside its own box
+   instead of making the whole page wider */
+@media screen and (max-width: 1280px) {
+
+    .main-content { min-width: 0; }
+
+    .table-wrap, .table-container, .table-section, .items-wrap, .modal-items, .view-items {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        max-width: 100%;
+    }
+
+}
+
+@media screen and (max-width: 900px) {
+
+    html, body { max-width: 100%; overflow-x: hidden; }
+
+    body { display: block !important; }
+
+    img { max-width: 100%; }
+
+    /* ----- layout: the side menu is a drawer ----- */
+    .dashboard-container {
+        display: block !important;
+        width: 100% !important;
+        min-height: 100vh;
+    }
+
+    .sidebar {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        height: 100% !important;
+        width: 270px !important;
+        min-width: 0 !important;
+        max-width: 82vw !important;
+        transform: translateX(-105%);
+        transition: transform .25s ease;
+        z-index: 2600;
+        overflow-y: auto;
+        box-shadow: none;
+    }
+
+    .sidebar.rs-open {
+        transform: translateX(0);
+        box-shadow: 0 0 40px rgba(0, 0, 0, .55);
+    }
+
+    .rs-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, .55);
+        z-index: 2550;
+    }
+
+    .rs-overlay.rs-show { display: block; }
+
+    body.rs-noscroll { overflow: hidden; }
+
+    .main-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 14px !important;
+        min-width: 0 !important;
+    }
+
+    /* ----- the top bar ----- */
+    .navbar {
+        display: flex !important;
+        flex-wrap: nowrap;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 10px;
+        padding: 12px 14px !important;
+    }
+
+    .navbar h1, .navbar h2 { font-size: 18px !important; line-height: 1.25; }
+    .navbar p { font-size: 12px !important; margin: 0; }
+
+    .rs-burger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        flex: 0 0 auto;
+        border-radius: 8px;
+        border: 1px solid rgba(128, 128, 128, .45);
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+        padding: 0;
+    }
+
+    .rs-burger svg { width: 22px; height: 22px; }
+
+    .rt-right { margin-left: auto; min-width: 0; gap: 12px !important; }
+    .rt-right > * { min-width: 0; }
+
+    [data-user-label="1"] {
+        display: block;
+        max-width: 40vw;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 13px !important;
+    }
+
+    /* ----- headers of the lists and the cards: title, then search and buttons below ----- */
+    .table-header, .history-header, .card-header, .section-head, .chart-header {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 12px !important;
+    }
+
+    .table-actions, .filters {
+        display: flex !important;
+        flex-direction: row !important;
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 8px !important;
+    }
+
+    .table-actions > *, .filters > * { flex: 1 1 140px; min-width: 0; }
+
+    .search-box { width: 100% !important; flex: 1 1 100% !important; }
+
+    .control-box { text-align: left !important; }
+    .control-box input { width: 100% !important; }
+
+    /* ----- lists that are too wide scroll inside their own box ----- */
+    .table-wrap, .table-container, .table-section, .items-wrap, .modal-items, .view-items {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        max-width: 100%;
+    }
+
+    /* ----- Request page ----- */
+    .tabs { flex-wrap: nowrap !important; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
+    .tab { white-space: nowrap; flex: 0 0 auto; }
+
+    .chart-section canvas { max-width: 100% !important; }
+
+    /* ----- chat, bell and messages ----- */
+    .cb-box {
+        left: 8px !important;
+        right: 8px !important;
+        width: auto !important;
+        bottom: 82px !important;
+        height: min(72vh, 520px) !important;
+        max-height: calc(100vh - 100px) !important;
+    }
+
+    .cb-button { right: 14px !important; bottom: 14px !important; }
+    .cb-form input { min-width: 0; }
+
+    /* the chat button would cover the buttons of a window: hide it while a window is open */
+    body.rs-modal-open .cb-button { display: none !important; }
+
+    .rt-toasts { left: 10px !important; right: 10px !important; bottom: 84px !important; }
+    .rt-toast { max-width: none !important; }
+
+    .rt-panel {
+        position: fixed !important;
+        top: 68px !important;
+        left: 10px !important;
+        right: 10px !important;
+        width: auto !important;
+        max-width: none !important;
+    }
+
+}
+
+@media screen and (max-width: 700px) {
+
+    /* ----- summary cards: two by two ----- */
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+    }
+
+    .cards .card { padding: 12px !important; }
+    .cards .card h3 { font-size: 12px !important; }
+    .cards .card p { font-size: 22px !important; }
+
+    .card { padding: 16px; }
+
+    /* ----- forms: one column ----- */
+    .form-grid, #receiptForm, .header-grid, .grid-3 {
+        grid-template-columns: 1fr !important;
+    }
+
+    input, select, textarea { font-size: 16px !important; }   /* the phone does not zoom in when typing */
+
+    .btn, .view-btn, .edit-btn, .delete-btn, .qr-btn, .scan-btn, .add-btn, .request-btn, .link-btn,
+    .approve-btn, .reject-btn, .release-btn, .print-btn, .cancel-btn, .save-btn, .submit-btn,
+    .generate-pdf-btn, .add-row-btn {
+        min-height: 40px;
+    }
+
+    .actions { flex-direction: column !important; align-items: stretch !important; }
+    .actions > .btn { width: 100%; }
+    .actions-right { width: 100%; }
+    .actions-right .btn { flex: 1; }
+
+    .modal-actions, .modal-buttons, .form-buttons, .modal-footer { flex-wrap: wrap; gap: 8px; }
+
+    .inline-row { flex-direction: column; }
+
+    /* ----- windows: the whole width ----- */
+    .modal-overlay { padding: 10px; align-items: flex-start !important; overflow-y: auto; }
+
+    .modal, .modal-card, .asset-modal {
+        width: 100% !important;
+        max-width: 100% !important;
+        max-height: 94vh;
+        overflow-y: auto;
+        padding: 16px !important;
+        margin: 0 auto;
+    }
+
+    /* photo of an asset: the picture above the "choose a file" button */
+    .photo-section { flex-direction: column; align-items: flex-start !important; }
+    .photo-preview { flex: 0 0 auto; }
+    .photo-section input[type="file"] { width: 100%; max-width: 100%; }
+
+    .qr-body { flex-direction: column; align-items: flex-start; }
+    .qr-image svg { max-width: 100%; height: auto; }
+
+    .detail-row { flex-direction: column; gap: 2px; }
+    .detail-row span:last-child, .detail-value { text-align: left !important; }
+
+    /* ----- tables become cards ----- */
+    table.rs-stack { min-width: 0 !important; width: 100% !important; display: block; border: none !important; }
+
+    table.rs-stack thead { display: none; }
+
+    table.rs-stack tbody, table.rs-stack tfoot { display: block; }
+
+    table.rs-stack tr {
+        display: block;
+        margin: 0 0 12px;
+        padding: 6px 12px;
+        border: 1px solid rgba(128, 128, 128, .35) !important;
+        border-radius: 10px;
+        background: rgba(128, 128, 128, .08) !important;
+    }
+
+    table.rs-stack td, table.rs-stack th {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 4px 12px;
+        width: auto !important;
+        padding: 7px 0 !important;
+        border: none !important;
+        border-bottom: 1px solid rgba(128, 128, 128, .2) !important;
+        text-align: right;
+        white-space: normal !important;
+        height: auto !important;
+    }
+
+    table.rs-stack tr > td:last-child { border-bottom: none !important; }
+
+    table.rs-stack td::before {
+        content: attr(data-label);
+        flex: 0 0 38%;
+        max-width: 38%;
+        text-align: left;
+        font-weight: 600;
+        font-size: 12px;
+        opacity: .7;
+    }
+
+    table.rs-stack td[data-label=""]::before { display: none; }
+
+    /* a cell that holds a box to fill in: the label above, the box below */
+    table.rs-stack td:has(> input), table.rs-stack td:has(> select) {
+        display: block !important;
+        text-align: left;
+    }
+
+    table.rs-stack td:has(> input)::before, table.rs-stack td:has(> select)::before {
+        display: block;
+        max-width: none;
+        margin-bottom: 3px;
+    }
+
+    table.rs-stack td > input, table.rs-stack td > select { width: 100% !important; }
+
+    table.rs-stack .remove-btn { align-self: flex-end; margin-left: auto; }
+
+    /* the line that adds up (TOTAL) */
+    table.rs-stack tfoot td { justify-content: space-between; font-weight: 700; }
+
+    /* ----- the pieces that were fixed in width ----- */
+    .sidebar-brand-text h2, .sidebar-title h2 { font-size: 17px !important; }
+
+}
+
+@media screen and (max-width: 420px) {
+
+    .main-content { padding: 10px !important; }
+    .navbar h1, .navbar h2 { font-size: 16px !important; }
+    [data-user-label="1"] { max-width: 34vw; }
+    .cards .card p { font-size: 20px !important; }
+
+}

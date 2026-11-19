@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auditor Dashboard</title>
+    <link rel="stylesheet" href="../../Shared/fonts.css">
+    <link rel="stylesheet" href="../../Admin/Dashboard/dashboard.css">
+    <link rel="stylesheet" href="../../Shared/workflow.css">
+    <link rel="stylesheet" href="../../Shared/sidebar.css">
+    <link rel="stylesheet" href="../../Shared/responsive.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <img src="../../Admin/Login/neu-logo.png" alt="NEU Logo" class="sidebar-logo">
+            <div class="sidebar-title"><h2>Custodian Management System </h2></div>
+        </div>
+        <ul>
+            <li class="active"><a href="../AuditorDashboard/dashboard.html" aria-current="page">Dashboard</a></li>
+            <li><a href="../RequisitionReview/review.html">Requisition Review</a></li>
+            <li><a href="../ReviewHistory/history.html">Review History</a></li>
+            <li class="sidebar-logout"><a role="button" tabindex="0">Logout</a></li>
+        </ul>
+    </aside>
+    <main class="main-content">
+        <header class="navbar">
+            <h1>Auditor Dashboard</h1>
+            <div class="profile"><span>Auditor</span></div>
+        </header>
+        <section class="cards">
+            <div class="card"><h3>Pending Requisitions for Review</h3><p id="cPending">0</p></div>
+            <div class="card"><h3>Total Reviewed Requisitions</h3><p id="cReviewed">0</p></div>
+            <div class="card"><h3>Signed Requisitions</h3><p id="cSigned">0</p></div>
+        </section>
+        <section class="wf-panel">
+            <h2>Pending Review</h2>
+            <div class="wf-tools"><input class="wf-input" id="pSearch" placeholder="Search number, department, requester..."></div>
+            <div class="wf-tablewrap"><table class="wf-table"><thead><tr><th>Requisition No.</th><th>Department / Office</th><th>Requester</th><th>Date</th><th>Status</th><th>Action</th></tr></thead><tbody id="pBody"></tbody></table></div>
+            <div class="wf-pager" id="pPager"></div>
+        </section>
+        <div class="wf-grid2">
+            <section class="wf-panel"><h2>Recently Reviewed Requisitions</h2>
+                <div class="wf-tablewrap"><table class="wf-table"><thead><tr><th>No.</th><th>Reviewed</th><th>Status</th><th></th></tr></thead><tbody id="rBody"></tbody></table></div><div class="wf-pager" id="rPager"></div></section>
+            <section class="wf-panel"><h2>Recently Signed Requisitions</h2>
+                <div class="wf-tablewrap"><table class="wf-table"><thead><tr><th>No.</th><th>Signed</th><th>Status</th><th></th></tr></thead><tbody id="sBody"></tbody></table></div><div class="wf-pager" id="sPager"></div></section>
+        </div>
+        <div class="wf-grid2">
+            <section class="wf-panel"><h2>Review Activities</h2><div id="activities"></div></section>
+            <section class="wf-panel"><h2>Supporting Documents</h2><p class="wf-note">Open a requisition with Review / View to see its Department Head signature, purpose, items and QR code.</p><div id="docs"></div></section>
+        </div>
+        <p class="wf-note">Frontend simulation with demo data. Not connected to a database.</p>
+    </main>
+</div>
+<script src="../../Shared/users.js"></script>
+<script src="../../Shared/settings.js"></script>
+<script src="../../Shared/permissions.js"></script>
+<script src="../../Shared/audit.js"></script>
+<script src="../../Shared/qr.js"></script>
+<script src="../../Shared/stock.js"></script>
+<script src="../../Shared/units.js"></script>
+<script src="../../Shared/esign.js"></script>
+<script src="../../Shared/realtime.js"></script>
+<script src="../../Shared/workflow.js"></script>
+<script src="../../Shared/mockdata.js"></script>
+<script src="../../Shared/chatbot.js"></script>
+<script src="../../Shared/sidebar.js"></script>
+<script src="../../Shared/responsive.js"></script>
+<script src="../auditor-common.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>

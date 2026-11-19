@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pull-Out Management</title>
+    <link rel="stylesheet" href="../../Shared/fonts.css">
+    <link rel="stylesheet" href="../Dashboard/dashboard.css">
+    <link rel="stylesheet" href="../../Shared/print.css">
+    <link rel="stylesheet" href="../../Shared/workflow.css">
+    <link rel="stylesheet" href="../../Shared/sidebar.css">
+    <link rel="stylesheet" href="../../Shared/responsive.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <img src="../Login/neu-logo.png" alt="NEU Logo" class="sidebar-logo">
+            <div class="sidebar-title"><h2>Custodian Management System </h2></div>
+        </div>
+        <ul>
+            <li><a href="../Dashboard/dashboard.html">Dashboard</a></li>
+            <li><a href="../RequestManagement/requestmanagement.html">Request Management</a></li>
+            <li><a href="../InventoryManagement/inventorymanagement.html">Inventory Management</a></li>
+            <li><a href="../Assets/assets.html">Assets</a></li>
+            <li><a href="../AnnualInventory/annualinventory.html">Annual Inventory</a></li>
+            <li><a href="../Issuance/issuance.html">Issuance</a></li>
+            <li><a href="../ReleaseQueue/releasequeue.html">Release Queue</a></li>
+            <li class="active"><a href="../PullOut/pullout.html" aria-current="page">Pull-Out Management</a></li>
+            <li><a href="../Reports/reports.html">Reports</a></li>
+            <li><a href="../Users/users.html">Users</a></li>
+            <li><a href="../AuditTrail/audittrail.html">Audit Trail</a></li>
+            <li><a href="../Settings/settings.html">System Settings</a></li>
+            <li class="sidebar-logout"><a role="button" tabindex="0">Logout</a></li>
+        </ul>
+    </aside>
+    <main class="main-content">
+        <header class="navbar"><h1>Pull-Out Management</h1><div class="profile"><span>Admin</span></div></header>
+
+        <section class="cards">
+            <div class="card"><h3>For Pull-Out</h3><p id="cFor">0</p></div>
+            <div class="card"><h3>Pulled Out</h3><p id="cDone">0</p></div>
+            <div class="card"><h3>Units Pulled Out</h3><p id="cUnits">0</p></div>
+            <div class="card"><h3>Cancelled</h3><p id="cCancel">0</p></div>
+        </section>
+
+        <section class="wf-panel">
+            <h2>Pull-Out Records</h2>
+            <div class="wf-tools">
+                <input class="wf-input" id="pSearch" placeholder="Search record, unit, reason...">
+                <select class="wf-select" id="pStatus"><option value="all">All status</option><option>For Pull-Out</option><option>Pulled Out</option><option>Cancelled</option></select>
+                <input class="wf-input" type="date" id="pFrom" title="From"><input class="wf-input" type="date" id="pTo" title="To">
+                <button type="button" class="wf-btn gold" id="newRecord">New Pull-Out Record</button>
+                <button type="button" class="wf-btn" id="pCsv">Export CSV</button>
+                <button type="button" class="wf-btn" id="pCheck">Check integrity</button>
+            </div>
+            <div class="wf-tablewrap"><table class="wf-table"><thead><tr><th>Record No.</th><th>Date</th><th>Units</th><th>Reason</th><th>Condition</th><th>Status</th><th>Created by</th><th>Action</th></tr></thead><tbody id="pBody"></tbody></table></div>
+            <div class="wf-pager" id="pPager"></div>
+            <p class="wf-note">A record takes specific physical units out of service: the units become For Pull-Out, and Pulled Out when the record is processed. Units and their history are never deleted. Frontend simulation with demo data.</p>
+        </section>
+    </main>
+</div>
+<div id="printArea"></div>
+<script src="../../Shared/users.js"></script>
+<script src="../../Shared/settings.js"></script>
+<script src="../../Shared/permissions.js"></script>
+<script src="../../Shared/audit.js"></script>
+<script src="../../Shared/print.js"></script>
+<script src="../../Shared/stock.js"></script>
+<script src="../../Shared/units.js"></script>
+<script src="../../Shared/pullout.js"></script>
+<script src="../../Shared/realtime.js"></script>
+<script src="../../Shared/esign.js"></script>
+<script src="../../Shared/workflow.js"></script>
+<script src="../../Shared/mockdata.js"></script>
+<script src="../../Shared/adminnav.js"></script>
+<script src="../../Shared/chatbot.js"></script>
+<script src="../../Shared/sidebar.js"></script>
+<script src="../../Shared/responsive.js"></script>
+<script src="pullout.js"></script>
+</body>
+</html>

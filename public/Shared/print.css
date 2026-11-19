@@ -1,0 +1,101 @@
+/* Shared print styles (paper forms) */
+
+/* ===== PRINT (hidden on screen) ===== */
+#printArea { display: none; }
+
+@media print {
+    body { background: #fff; }
+    .dashboard-container { display: none !important; }
+    #printArea { display: block; }
+
+    .paper { font-family: Arial, sans-serif; color: #000; width: 100%; }
+    .paper table { width: 100%; border-collapse: collapse; }
+    .paper th, .paper td { border: 1.5px solid #000; padding: 4px 6px; font-size: 11px; }
+    .paper th { font-weight: 700; text-align: center; }
+    .paper td { height: 22px; }
+    .paper .num { text-align: right; }
+    .paper .ctr { text-align: center; }
+    .paper .gap { margin-top: 5px; }
+    .paper .top { position: relative; text-align: center; margin-bottom: 6px; }
+    .paper .top img { position: absolute; left: 22%; top: 0; width: 70px; }
+    .paper .uni { font-family: "Brush Script MT", cursive; font-size: 34px; }
+    .paper .uni-plain { font-weight: 700; font-size: 30px; }
+    .paper .dept { font-weight: 700; font-size: 16px; }
+    .paper .title { font-weight: 700; font-size: 20px; letter-spacing: 3px; margin-top: 2px; }
+    .paper .box { position: absolute; right: 0; top: 0; text-align: right; font-weight: 700; font-size: 11px; }
+    .paper .box b { display: block; font-size: 26px; color: #16834b; }
+    .paper .box-frame { border: 1.5px solid #000; padding: 6px 14px; font-size: 13px; }
+    .paper .formno { position: absolute; left: 0; top: 0; text-align: left; font-weight: 700; font-size: 18px; }
+    .paper .formno small { display: block; font-size: 10px; font-style: italic; }
+    .paper .head td { height: 38px; font-weight: 700; vertical-align: top; font-size: 12px; }
+    .paper .sign-label td { border-bottom: none; height: auto; font-weight: 700; font-size: 12px; }
+    .paper .sign td { height: 85px; text-align: center; vertical-align: bottom; font-weight: 700; border-top: none; }
+    .paper .sign .name { font-style: italic; display: block; }
+    .paper .dark th { background: #333 !important; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .paper .rev { text-align: right; font-size: 8px; font-weight: 700; margin-top: 3px; }
+
+    /* Pull-out: 3 copies on one portrait page */
+    .copy { border-bottom: 1px dashed #000; padding-bottom: 8px; margin-bottom: 8px; position: relative; page-break-inside: avoid; }
+    .copy:last-child { border-bottom: none; }
+    .copy .top { margin-bottom: 4px; min-height: 80px; }
+    .copy .formno { font-size: 13px; }
+    .copy th, .copy td { font-size: 10px; padding: 3px 5px; }
+    .copy td { height: 18px; }
+    .copy .sign-label td, .copy .sign td { height: 22px; font-size: 10px; vertical-align: middle; }
+    .copy .ctrl-no { text-align: right; margin-top: 4px; }
+    .copy .ctrl-no span { display: inline-block; border: 1.5px solid #000; padding: 3px 14px; font-size: 13px; letter-spacing: 2px; }
+}
+
+@media print {
+    body { display: block !important; background: #fff !important; }
+    #printArea { width: 100%; }
+    .modal-overlay { display: none !important; }
+}
+
+/* Keep the printed papers clean: Admin pages style their tables dark,
+   so reset that inside the print area. */
+@media print {
+    #printArea table, #printArea tr, #printArea td, #printArea th {
+        background: transparent !important;
+        color: #000 !important;
+    }
+    #printArea table { min-width: 0 !important; }
+    #printArea .paper .dark th {
+        background: #333 !important;
+        color: #fff !important;
+    }
+}
+
+/* QR labels (Assets) */
+@media print {
+    .qr-sheet { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; font-family: Arial, sans-serif; color: #000; }
+    .qr-label { border: 1px dashed #000; padding: 8px 6px; text-align: center; page-break-inside: avoid; }
+    .qr-label svg { width: 120px; height: 120px; }
+    .qr-label .org { font-size: 8px; font-weight: 700; letter-spacing: 1px; margin-bottom: 2px; }
+    .qr-label .code { font-size: 15px; font-weight: 700; margin-top: 2px; }
+    .qr-label .name { font-size: 11px; }
+    .qr-label .where { font-size: 9px; color: #444; }
+}
+
+/* QR code printed on the forms */
+@media print {
+    .qr-form { position: absolute; }
+    .qr-form svg { display: block; width: 100%; height: 100%; }
+}
+
+/* Annual Inventory Report */
+@media print {
+    .ai .top img { left: 24%; width: 58px; }
+    .ai .uni { font-size: 28px; }
+    .ai .title { margin-top: 0; }
+    .ai th, .ai td { font-size: 9px; padding: 2px 4px; }
+    .ai td { height: 17px; }
+    .ai .head td { height: 30px; vertical-align: top; font-size: 9px; }
+    .ai-items thead { display: table-header-group; }
+    .ai-items tr { page-break-inside: avoid; }
+    .ai .total td { font-weight: 700; }
+    .ai-draft { text-align: center; font-weight: 700; font-size: 11px; color: #b00020; border: 1.5px solid #b00020; padding: 3px; margin-bottom: 5px; }
+    .ai-cert { border: 1.5px solid #000; padding: 4px 6px; font-size: 8.5px; line-height: 1.3; margin-top: 5px; page-break-inside: avoid; }
+    .ai .sign td { height: 50px; vertical-align: bottom; text-align: left; }
+    .ai .sign .name { font-weight: 700; }
+}

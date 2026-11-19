@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#15191f">
+
+    <title>NEU | Custodian Management System</title>
+
+    <link rel="stylesheet" href="Shared/fonts.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: #15191f;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 580px;
+            background: #202630;
+            border: 1px solid #343d49;
+            border-radius: 20px;
+            padding: 42px 38px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,.3);
+        }
+
+        .logo {
+            width: 95px;
+            height: 95px;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+
+        .university {
+            color: #eab52b;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 25px;
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .department {
+            color: #aeb7c4;
+            font-size: 13px;
+            margin-bottom: 24px;
+        }
+
+        .description {
+            color: #c4cbd4;
+            font-size: 13px;
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
+
+        .login-title {
+            text-align: left;
+            color: #eab52b;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 13px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            transition: .2s ease;
+        }
+
+        .btn-primary {
+            background: #eab52b;
+            color: #171717;
+            border: 1px solid #eab52b;
+        }
+
+        .btn-secondary {
+            background: #29323e;
+            color: #fff;
+            border: 1px solid #46515f;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        .security {
+            margin-top: 25px;
+            padding-top: 18px;
+            border-top: 1px solid #3a4350;
+            color: #aeb7c4;
+            font-size: 11px;
+            line-height: 1.8;
+        }
+
+        .footer {
+            margin-top: 24px;
+            color: #737f8d;
+            font-size: 10px;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 32px 22px;
+            }
+
+            h1 {
+                font-size: 21px;
+            }
+
+            .logo {
+                width: 78px;
+                height: 78px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <img
+            class="logo"
+            src="Admin/Login/neu-logo.png"
+            alt="New Era University Logo"
+        >
+
+        <div class="university">
+            NEW ERA UNIVERSITY
+        </div>
+
+        <h1>Custodian Management System</h1>
+
+        <p class="department">
+            Property Department
+        </p>
+
+        <p class="description">
+            Welcome to the NEU Custodian Management System.
+            A centralized platform for managing university
+            assets, requisitions, inventory, and property records.
+        </p>
+
+        <div class="login-title">
+            SELECT YOUR ACCOUNT ACCESS
+        </div>
+
+        <a
+            class="btn btn-primary"
+            href="Admin/Login/login.html"
+        >
+            ADMIN / STAFF / AUDITOR LOGIN
+        </a>
+
+        <a
+            class="btn btn-secondary"
+            href="Requester/RequesterLogin/login.html"
+        >
+            REQUESTER LOGIN
+        </a>
+
+        <div class="security">
+            Authorized users only.<br>
+            Please use your registered account credentials
+            to access the system.
+        </div>
+
+        <div class="footer">
+            &copy; 2026 New Era University - Property Department
+            <br>
+            Custodian Management System
+        </div>
+
+    </main>
+
+</body>
+</html>

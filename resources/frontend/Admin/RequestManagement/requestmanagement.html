@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Management</title>
+    <link rel="stylesheet" href="../../Shared/fonts.css">
+    <link rel="stylesheet" href="requestmanagement.css">
+    <link rel="stylesheet" href="../../Shared/print.css">
+    <link rel="stylesheet" href="../../Shared/workflow.css">
+    <link rel="stylesheet" href="../../Shared/sidebar.css">
+    <link rel="stylesheet" href="../../Shared/responsive.css">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <img src="../Login/neu-logo.png" alt="NEU Logo" class="sidebar-logo">
+            <div class="sidebar-title">
+                <h2>Custodian Management System </h2>
+            </div>
+        </div>
+
+        <ul>
+            <li><a href="../Dashboard/dashboard.html">Dashboard</a></li>
+            <li class="active"><a href="../RequestManagement/requestmanagement.html" aria-current="page">Request Management</a></li>
+            <li><a href="../InventoryManagement/inventorymanagement.html">Inventory Management</a></li>
+            <li><a href="../Assets/assets.html">Assets</a></li>
+            <li><a href="../AnnualInventory/annualinventory.html">Annual Inventory</a></li>
+            <li><a href="../Issuance/issuance.html">Issuance</a></li>
+            <li><a href="../ReleaseQueue/releasequeue.html">Release Queue</a></li>
+            <li><a href="../PullOut/pullout.html">Pull-Out Management</a></li>
+            <li><a href="../Reports/reports.html">Reports</a></li>
+            <li><a href="../Users/users.html">Users</a></li>
+            <li><a href="../AuditTrail/audittrail.html">Audit Trail</a></li>
+            <li><a href="../Settings/settings.html">System Settings</a></li>
+            <li class="sidebar-logout"><a role="button" tabindex="0">Logout</a></li>
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Navbar -->
+        <div class="navbar">
+            <h2>Request Management</h2>
+            <span>Admin</span>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="cards">
+            <div class="card">
+                <h3>Total Forms</h3>
+                <p id="totalCount">0</p>
+            </div>
+            <div class="card">
+                <h3>Pending</h3>
+                <p id="pendingCount">0</p>
+            </div>
+            <div class="card">
+                <h3>Approved</h3>
+                <p id="approvedCount">0</p>
+            </div>
+            <div class="card">
+                <h3>Released</h3>
+                <p id="releasedCount">0</p>
+            </div>
+            <div class="card">
+                <h3>Rejected</h3>
+                <p id="rejectedCount">0</p>
+            </div>
+        </div>
+
+        <!-- Request Table -->
+        <div class="table-section">
+
+            <div class="table-header">
+                <h2>Request List</h2>
+
+                <div class="filters">
+                    <select id="typeFilter" class="filter-select">
+                        <option value="all">All forms</option>
+                        <option value="requisition">Requisition</option>
+                        <option value="receipt">Acknowledgment Receipt</option>
+                        <option value="pullout">Pull-Out Request</option>
+                    </select>
+
+                    <select id="statusFilter" class="filter-select">
+                        <option value="all">All status</option>
+                        <option value="Pending">Pending (pull-out)</option>
+                        <option value="Pending Department Head Signature">Pending Department Head Signature</option>
+                        <option value="Pending Auditor Review">Pending Auditor Review</option>
+                        <option value="Pending Auditor Signature">Pending Auditor Signature</option>
+                        <option value="Pending Director Approval">Pending Director Approval</option>
+                        <option value="Approved">Approved</option>
+                        <option value="Ready for Release">Ready for Release</option>
+                        <option value="Partially Released">Partially Released</option>
+                        <option value="Released">Released</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Rejected">Rejected</option>
+                    </select>
+
+                    <button type="button" class="scan-btn" id="scanBtn">Scan QR</button>
+                    <input type="text" id="searchBox" class="search-box" placeholder="Search request">
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Control No.</th>
+                            <th>Form</th>
+                            <th>Requester</th>
+                            <th>Details</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="requestTableBody"></tbody>
+                </table>
+            </div>
+
+            <p id="noRequests" class="no-requests">
+                No forms found. Forms submitted by requesters will appear here.
+            </p>
+
+        </div>
+
+        <!-- ========================================
+             REQUEST DETAILS MODAL
+        ======================================== -->
+        <div class="modal-overlay" id="requestModal">
+            <div class="modal">
+
+                <div class="modal-header">
+                    <h2>Request Details</h2>
+                    <button class="close-btn" id="closeModal">&times;</button>
+                </div>
+
+                <div class="details-container" id="modalBody"></div>
+
+                <div class="modal-actions" id="modalActions"></div>
+
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<!-- PRINT AREA (paper form) -->
+<div id="printArea"></div>
+
+<script src="../../Shared/users.js"></script>
+<script src="../../Shared/settings.js"></script>
+<script src="../../Shared/permissions.js"></script>
+<script src="../../Shared/qr.js"></script>
+<script src="../../Shared/scanner.js"></script>
+<script src="../../Shared/print.js"></script>
+<script src="../../Shared/audit.js"></script>
+<script src="../../Shared/stock.js"></script>
+<script src="../../Shared/units.js"></script>
+<script src="../../Shared/pullout.js"></script>
+<script src="../../Shared/signatures.js"></script>
+<script src="../../Shared/realtime.js"></script>
+<script src="../../Shared/esign.js"></script>
+<script src="../../Shared/workflow.js"></script>
+<script src="../../Shared/release.js"></script>
+<script src="../../Shared/mockdata.js"></script>
+<script src="../../Shared/adminnav.js"></script>
+<script src="../../Shared/chatbot.js"></script>
+<script src="../../Shared/sidebar.js"></script>
+<script src="../../Shared/responsive.js"></script>
+<script src="requestmanagement.js"></script>
+</body>
+</html>

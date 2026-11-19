@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Issuance Management</title>
+
+    <link rel="stylesheet" href="../../Shared/fonts.css">
+    <link rel="stylesheet" href="issuance.css">
+    <link rel="stylesheet" href="../../Shared/print.css">
+    <link rel="stylesheet" href="../../Shared/workflow.css">
+    <link rel="stylesheet" href="../../Shared/sidebar.css">
+    <link rel="stylesheet" href="../../Shared/responsive.css">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- ========================================
+         SIDEBAR
+    ========================================= -->
+
+<aside class="sidebar">
+
+    <!-- Sidebar Logo and Title -->
+    <div class="sidebar-brand">
+
+        <img
+            src="../Login/neu-logo.png"
+            alt="NEU Logo"
+            class="sidebar-logo"
+        >
+
+        <div class="sidebar-title">
+            <h2>Custodian Management System </h2>
+        </div>
+
+    </div>
+
+
+        <ul>
+            <li><a href="../Dashboard/dashboard.html">Dashboard</a></li>
+            <li><a href="../RequestManagement/requestmanagement.html">Request Management</a></li>
+            <li><a href="../InventoryManagement/inventorymanagement.html">Inventory Management</a></li>
+            <li><a href="../Assets/assets.html">Assets</a></li>
+            <li><a href="../AnnualInventory/annualinventory.html">Annual Inventory</a></li>
+            <li class="active"><a href="../Issuance/issuance.html" aria-current="page">Issuance</a></li>
+            <li><a href="../ReleaseQueue/releasequeue.html">Release Queue</a></li>
+            <li><a href="../PullOut/pullout.html">Pull-Out Management</a></li>
+            <li><a href="../Reports/reports.html">Reports</a></li>
+            <li><a href="../Users/users.html">Users</a></li>
+            <li><a href="../AuditTrail/audittrail.html">Audit Trail</a></li>
+            <li><a href="../Settings/settings.html">System Settings</a></li>
+            <li class="sidebar-logout"><a role="button" tabindex="0">Logout</a></li>
+        </ul>
+
+    </aside>
+
+
+    <!-- ========================================
+         MAIN CONTENT
+    ========================================= -->
+
+    <main class="main-content">
+
+        <!-- NAVBAR -->
+        <div class="navbar">
+            <h2>Issuance (Acknowledgment Receipt)</h2>
+            <span>Administrator</span>
+        </div>
+
+        <!-- STATISTICS CARDS -->
+        <div class="cards">
+            <div class="card">
+                <h3>Total Receipts</h3>
+                <p id="totalIssued">0</p>
+            </div>
+            <div class="card">
+                <h3>Issued Today</h3>
+                <p id="todayIssued">0</p>
+            </div>
+            <div class="card">
+                <h3>People Issued</h3>
+                <p id="peopleIssued">0</p>
+            </div>
+            <div class="card">
+                <h3>Items Issued</h3>
+                <p id="itemsIssued">0</p>
+            </div>
+        </div>
+
+        <!-- RECEIPT TABLE -->
+        <div class="table-section">
+            <div class="table-header">
+                <h2>Acknowledgment Receipts</h2>
+                <div class="table-actions">
+                    <input type="text" class="search-box" id="searchBox" placeholder="Search Receipt">
+                    <button class="issue-btn" id="issueButton">+ New Receipt</button>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Control No.</th>
+                            <th>Issued To</th>
+                            <th>Department</th>
+                            <th>Items</th>
+                            <th>Date Issued</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="issuanceTableBody"></tbody>
+                </table>
+            </div>
+
+            <p id="noReceipts" class="no-receipts">
+                No receipts yet. Click "+ New Receipt" to issue items to a person.
+            </p>
+        </div>
+
+    </main>
+</div>
+
+
+<!-- ========================================
+     NEW RECEIPT MODAL
+========================================= -->
+<div class="modal-overlay" id="issueModal">
+    <div class="modal-card wide">
+
+        <div class="modal-header">
+            <h2>New Acknowledgment Receipt</h2>
+            <button class="close-btn" id="closeModal">&times;</button>
+        </div>
+
+        <form id="receiptForm" autocomplete="off">
+
+            <div class="form-group">
+                <label for="controlNo">Control No.</label>
+                <input type="text" id="controlNo" readonly>
+            </div>
+
+            <div class="form-group">
+                <label>Form</label>
+                <input type="text" value="PROP-ARII" readonly>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="receiverAccount">Issued to (Requester account)</label>
+                <select id="receiverAccount">
+                    <option value="">-- Not linked to an account --</option>
+                </select>
+                <small class="field-note">
+                    The Requester you choose will see this receipt in his or her own pages and can print it.
+                    Choose "Not linked" only if the person has no account.
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="receiverName">Name</label>
+                <input type="text" id="receiverName" placeholder="Full name of the person receiving the items">
+            </div>
+
+            <div class="form-group">
+                <label for="receiverDept">Department</label>
+                <input type="text" id="receiverDept" placeholder="e.g. College of Computer Studies">
+            </div>
+
+            <div class="form-group full-width">
+                <label for="requisitionNo">Based on a released Requisition (optional)</label>
+                <div class="inline-row">
+                    <input type="text" id="requisitionNo" placeholder="Requisition Control No., for example 26-001">
+                    <button type="button" class="add-row-btn" id="loadRequisitionBtn">Load items</button>
+                </div>
+                <small class="field-note">
+                    If this receipt is for a requisition that was already released, enter its number: the stock was already updated when it was released.
+                    Leave it empty for items given directly: the stock is updated when you save.
+                </small>
+            </div>
+
+            <div class="form-group full-width">
+                <label>Items</label>
+                <div class="items-wrap">
+                    <table class="items-table">
+                        <thead>
+                            <tr>
+                                <th class="w-qty">Qty</th>
+                                <th class="w-unit">Unit</th>
+                                <th>Item</th>
+                                <th>Description</th>
+                                <th class="w-x"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="itemRows"></tbody>
+                    </table>
+                </div>
+                <button type="button" class="add-row-btn" id="addRowBtn">+ Add Row</button>
+            </div>
+
+            <div class="form-buttons">
+                <button type="button" class="cancel-btn" id="cancelModal">Cancel</button>
+                <button type="button" class="cancel-btn" id="saveBtn">Save</button>
+                <button type="button" class="submit-btn" id="savePrintBtn">Save &amp; Print</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+<!-- ========================================
+     VIEW RECEIPT MODAL
+========================================= -->
+<div class="modal-overlay" id="viewModal">
+    <div class="modal-card wide">
+
+        <div class="modal-header">
+            <h2>Receipt Details</h2>
+            <button class="close-btn" id="closeView">&times;</button>
+        </div>
+
+        <div id="viewBody"></div>
+
+        <div class="form-buttons view-buttons">
+            <button type="button" class="cancel-btn" id="closeViewBtn">Close</button>
+            <button type="button" class="submit-btn" id="printViewBtn">Print</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- PRINT AREA (paper form) -->
+<div id="printArea"></div>
+
+<script src="../../Shared/permissions.js"></script>
+<script src="../../Shared/qr.js"></script>
+<script src="../../Shared/print.js"></script>
+<script src="../../Shared/audit.js"></script>
+<script src="../../Shared/users.js"></script>
+<script src="../../Shared/settings.js"></script>
+<script src="../../Shared/stock.js"></script>
+<script src="../../Shared/units.js"></script>
+<script src="../../Shared/realtime.js"></script>
+<script src="../../Shared/esign.js"></script>
+<script src="../../Shared/workflow.js"></script>
+<script src="../../Shared/release.js"></script>
+<script src="../../Shared/mockdata.js"></script>
+<script src="../../Shared/adminnav.js"></script>
+<script src="../../Shared/chatbot.js"></script>
+<script src="../../Shared/sidebar.js"></script>
+<script src="../../Shared/responsive.js"></script>
+<script src="issuance.js"></script>
+</body>
+</html>

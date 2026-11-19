@@ -1,0 +1,647 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ========================================
+   RESET
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+
+/* ========================================
+   BODY
+======================================== */
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #ffffff;
+
+    color: #111;
+
+    padding: 20px;
+}
+
+
+/* ========================================
+   MAIN LOGIN CONTAINER
+======================================== */
+
+.login-container {
+    width: 100%;
+    max-width: 900px;
+    min-height: 500px;
+
+    display: flex;
+
+    background: #ffffff;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    border: 1px solid #e5e5e5;
+
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.10);
+}
+
+
+/* ========================================
+   LEFT BRANDING CARD
+======================================== */
+
+.branding-card {
+    width: 50%;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 40px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f1f8f4
+        );
+
+    border-right: 1px solid #e5e5e5;
+}
+
+
+/* ========================================
+   LOGO CONTAINER
+======================================== */
+
+.logo-container {
+    width: 150px;
+    height: 150px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+
+/* ========================================
+   NEU LOGO
+======================================== */
+
+.neu-logo {
+    width: 140px;
+    height: 140px;
+
+    object-fit: contain;
+}
+
+
+/* ========================================
+   BRANDING TITLE
+======================================== */
+
+.branding-card h1 {
+    font-size: 25px;
+
+    font-weight: 600;
+
+    line-height: 1.4;
+
+    color: #111;
+}
+
+
+/* ========================================
+   BRANDING DESCRIPTION
+======================================== */
+
+.branding-card p {
+    margin-top: 15px;
+
+    font-size: 14px;
+
+    font-weight: 300;
+
+    color: #666;
+
+    line-height: 1.6;
+}
+
+
+/* ========================================
+   BRANDING LINE
+======================================== */
+
+.branding-line {
+    width: 70px;
+
+    height: 3px;
+
+    background: #198754;
+
+    margin: 25px 0 15px;
+
+    border-radius: 5px;
+}
+
+
+/* ========================================
+   REQUESTER PORTAL
+======================================== */
+
+.branding-card span {
+    font-size: 14px;
+
+    color: #198754;
+
+    font-weight: 500;
+}
+
+
+/* ========================================
+   LOGIN FORM CARD
+======================================== */
+
+.form-box {
+    width: 50%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 50px;
+
+    background: #ffffff;
+}
+
+
+/* ========================================
+   LOGIN FORM
+======================================== */
+
+.form-box form {
+    width: 100%;
+    max-width: 350px;
+}
+
+
+/* ========================================
+   LOGIN HEADER
+======================================== */
+
+.login-header {
+    margin-bottom: 30px;
+}
+
+
+.login-header h2 {
+    font-size: 28px;
+
+    font-weight: 600;
+
+    color: #111;
+
+    margin-bottom: 5px;
+}
+
+
+.login-header p {
+    font-size: 14px;
+
+    color: #777;
+}
+
+
+/* ========================================
+   INPUT GROUP
+======================================== */
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+
+.input-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    color: #333;
+}
+
+
+/* ========================================
+   INPUT
+======================================== */
+
+input {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    background: #ffffff;
+
+    border: 1px solid #dcdcdc;
+
+    border-radius: 7px;
+
+    outline: none;
+
+    font-size: 14px;
+
+    color: #111;
+
+    transition: 0.3s;
+}
+
+
+input::placeholder {
+    color: #999;
+}
+
+
+input:focus {
+    border-color: #198754;
+
+    box-shadow:
+        0 0 0 2px rgba(
+            25,
+            135,
+            84,
+            0.10
+        );
+}
+
+
+/* ========================================
+   LOGIN BUTTON
+======================================== */
+
+button {
+    width: 100%;
+
+    padding: 13px;
+
+    background: #198754;
+
+    border: none;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    outline: none;
+
+    font-size: 15px;
+
+    color: #ffffff;
+
+    font-weight: 600;
+
+    margin-top: 5px;
+
+    transition: 0.3s;
+}
+
+
+button:hover {
+    background: #157347;
+
+    transform: translateY(-1px);
+}
+
+
+button:active {
+    transform: translateY(0);
+}
+
+
+/* ========================================
+   LOGIN FOOTER
+======================================== */
+
+.login-footer {
+    text-align: center;
+
+    margin-top: 25px;
+
+    font-size: 11px;
+
+    color: #888;
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media screen and (max-width: 750px) {
+
+    body {
+        padding: 20px;
+    }
+
+
+    .login-container {
+        max-width: 450px;
+
+        min-height: auto;
+
+        flex-direction: column;
+    }
+
+
+    .branding-card {
+        width: 100%;
+
+        min-height: 280px;
+
+        padding: 30px;
+
+        border-right: none;
+
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+
+    .logo-container {
+        width: 100px;
+
+        height: 100px;
+
+        margin-bottom: 15px;
+    }
+
+
+    .neu-logo {
+        width: 90px;
+
+        height: 90px;
+    }
+
+
+    .branding-card h1 {
+        font-size: 20px;
+    }
+
+
+    .branding-card p {
+        font-size: 13px;
+    }
+
+
+    .branding-line {
+        margin: 15px 0 10px;
+    }
+
+
+    .form-box {
+        width: 100%;
+
+        padding: 35px 30px;
+    }
+
+
+    .form-box form {
+        max-width: 350px;
+    }
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media screen and (max-width: 480px) {
+
+    body {
+        padding: 12px;
+
+        align-items: center;
+    }
+
+
+    .login-container {
+        width: 100%;
+
+        max-width: 100%;
+
+        border-radius: 12px;
+
+        flex-direction: column;
+    }
+
+
+    .branding-card {
+        width: 100%;
+
+        min-height: 230px;
+
+        padding: 25px 20px;
+    }
+
+
+    .logo-container {
+        width: 80px;
+
+        height: 80px;
+
+        margin-bottom: 12px;
+    }
+
+
+    .neu-logo {
+        width: 75px;
+
+        height: 75px;
+    }
+
+
+    .branding-card h1 {
+        font-size: 18px;
+
+        line-height: 1.35;
+    }
+
+
+    .branding-card p {
+        font-size: 12px;
+
+        margin-top: 8px;
+
+        line-height: 1.5;
+    }
+
+
+    .branding-line {
+        width: 55px;
+
+        height: 2px;
+
+        margin: 12px 0 8px;
+    }
+
+
+    .branding-card span {
+        font-size: 12px;
+    }
+
+
+    .form-box {
+        width: 100%;
+
+        padding: 30px 22px;
+    }
+
+
+    .form-box form {
+        width: 100%;
+
+        max-width: none;
+    }
+
+
+    .login-header {
+        margin-bottom: 22px;
+    }
+
+
+    .login-header h2 {
+        font-size: 23px;
+    }
+
+
+    .login-header p {
+        font-size: 13px;
+    }
+
+
+    .input-group {
+        margin-bottom: 17px;
+    }
+
+
+    .input-group label {
+        font-size: 13px;
+
+        margin-bottom: 6px;
+    }
+
+
+    input {
+        padding: 12px;
+
+        font-size: 13px;
+    }
+
+
+    button {
+        padding: 12px;
+
+        font-size: 14px;
+    }
+
+
+    .login-footer {
+        margin-top: 20px;
+
+        font-size: 10px;
+    }
+
+}
+
+
+/* ========================================
+   VERY SMALL MOBILE
+======================================== */
+
+@media screen and (max-width: 360px) {
+
+    body {
+        padding: 8px;
+    }
+
+
+    .branding-card {
+        min-height: 210px;
+
+        padding: 20px 15px;
+    }
+
+
+    .logo-container {
+        width: 65px;
+
+        height: 65px;
+    }
+
+
+    .neu-logo {
+        width: 60px;
+
+        height: 60px;
+    }
+
+
+    .branding-card h1 {
+        font-size: 16px;
+    }
+
+
+    .branding-card p {
+        font-size: 11px;
+    }
+
+
+    .form-box {
+        padding: 25px 18px;
+    }
+
+
+    .login-header h2 {
+        font-size: 21px;
+    }
+
+}
+
+/* ========================================
+   SWITCH TO ADMIN LOGIN LINK
+======================================== */
+
+.switch-login {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 13px;
+    color: #666;
+}
+
+.switch-login a {
+    color: #16834b;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.switch-login a:hover {
+    text-decoration: underline;
+}

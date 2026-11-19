@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Requester Dashboard</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="../../Shared/fonts.css">
+    <link rel="stylesheet" href="../../Shared/print.css">
+    <link rel="stylesheet" href="../../Shared/workflow.css">
+    <link rel="stylesheet" href="../../Shared/sidebar.css">
+    <link rel="stylesheet" href="../../Shared/responsive.css">
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="sidebar-brand">
+
+                <img
+                    src="../../Admin/Login/neu-logo.png"
+                    alt="NEU Logo"
+                    class="sidebar-logo"
+                >
+
+                <div class="sidebar-title">
+                    <h2>Custodian Management System</h2>
+                </div>
+
+            </div>
+
+            <!-- MENU -->
+            <ul>
+                <li class="active">
+                    <a href="../RequesterDashboard/dashboard.html" aria-current="page">
+                        Dashboard
+                    </a>
+                </li>
+
+                <li>
+                    <a href="../Request/request.html">Create Requisition</a>
+                </li>
+
+                <li>
+                    <a href="../RequesterMyRequests/myrequests.html">My Requests</a>
+                </li>
+
+                <li>
+                    <a href="../RequesterHistory/history.html">History</a>
+                </li>
+
+                <li>
+                    <a href="../RequesterNotifications/notifications.html">Notifications</a>
+                </li>
+
+                <li>
+                    <a href="../RequesterInventory/inventory.html">My Inventory</a>
+                </li>
+
+                <li class="sidebar-logout">
+                    <a role="button" tabindex="0">Logout</a>
+                </li>
+            </ul>
+
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <!-- NAVBAR -->
+            <nav class="navbar">
+
+                <div>
+                    <h2>Requester Dashboard</h2>
+                    <p>Welcome back!</p>
+                </div>
+
+                <div class="user-info">
+                    <span class="user-role">Requester</span>
+                </div>
+
+            </nav>
+
+            <!-- SUMMARY CARDS -->
+            <section class="cards">
+
+                <div class="card">
+                    <h3>My Total Requests</h3>
+                    <p id="cTotal">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Pending Requests</h3>
+                    <p id="cPending">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Approved Requests</h3>
+                    <p id="cApproved">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Rejected Requests</h3>
+                    <p id="cRejected">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Ready for Release</h3>
+                    <p id="cReady">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Released Requests</h3>
+                    <p id="cReleased">0</p>
+                </div>
+
+            </section>
+
+            <!-- RECENT REQUESTS -->
+            <section class="wf-panel light" style="margin-top:20px">
+
+                <h2>My Recent Requests</h2>
+
+                <div class="wf-tools">
+
+                    <input
+                        class="wf-input"
+                        id="dSearch"
+                        placeholder="Search my requisitions..."
+                    >
+
+                    <select class="wf-select" id="dStatus">
+                        <option value="all">All statuses</option>
+                    </select>
+
+                    <button
+                        type="button"
+                        class="wf-btn gold"
+                        id="requestButton"
+                    >
+                        Create Requisition
+                    </button>
+
+                </div>
+
+                <div class="wf-tablewrap">
+
+                    <table class="wf-table">
+
+                        <thead>
+                            <tr>
+                                <th>Requisition No.</th>
+                                <th>Department / Office</th>
+                                <th>Items</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="requestTableBody"></tbody>
+
+                    </table>
+
+                </div>
+
+                <div class="wf-pager" id="dPager"></div>
+
+            </section>
+
+            <!-- TRACKING AND STATUS -->
+            <div class="wf-grid2">
+
+                <section class="wf-panel light">
+                    <h2>Request Status Tracking</h2>
+                    <div id="tracking"></div>
+                </section>
+
+                <section class="wf-panel light">
+                    <h2>Requests by Status</h2>
+                    <div id="statusBars"></div>
+                </section>
+
+            </div>
+
+            <!-- NOTIFICATIONS AND TRANSACTIONS -->
+            <div class="wf-grid2">
+
+                <section class="wf-panel light">
+
+                    <h2>Recent Notifications</h2>
+
+                    <div id="recentNotes"></div>
+
+                    <button
+                        type="button"
+                        class="wf-btn sm"
+                        id="allNotes"
+                        style="margin-top:8px"
+                    >
+                        Open Notifications
+                    </button>
+
+                </section>
+
+                <section class="wf-panel light">
+
+                    <h2>Recent Transactions</h2>
+
+                    <div id="transactions"></div>
+
+                    <button
+                        type="button"
+                        class="wf-btn sm"
+                        id="allHistory"
+                        style="margin-top:8px"
+                    >
+                        Open Request History
+                    </button>
+
+                </section>
+
+            </div>
+
+            <p class="wf-note" style="color:#777">
+                Frontend simulation with demo data. You only see your own requisitions.
+            </p>
+
+        </main>
+
+    </div>
+
+    <!-- PRINT AREA -->
+    <div id="printArea"></div>
+
+    <!-- SHARED SCRIPTS -->
+    <script src="../../Shared/qr.js"></script>
+    <script src="../../Shared/print.js"></script>
+
+    <script src="../../Shared/stock.js"></script>
+    <script src="../../Shared/units.js"></script>
+    <script src="../../Shared/signatures.js"></script>
+    <script src="../../Shared/users.js"></script>
+    <script src="../../Shared/settings.js"></script>
+    <script src="../../Shared/permissions.js"></script>
+    <script src="../../Shared/audit.js"></script>
+    <script src="../../Shared/realtime.js"></script>
+    <script src="../../Shared/esign.js"></script>
+    <script src="../../Shared/workflow.js"></script>
+    <script src="../../Shared/mockdata.js"></script>
+    <script src="../../Shared/chatbot.js"></script>
+    <script src="../../Shared/sidebar.js"></script>
+    <script src="../../Shared/responsive.js"></script>
+
+    <!-- DASHBOARD SCRIPT - LOAD LAST -->
+    <script src="dashboard.js"></script>
+
+</body>
+</html>

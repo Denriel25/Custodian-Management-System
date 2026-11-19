@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Assets Management</title>
+
+    <link rel="stylesheet" href="../../Shared/fonts.css">
+    <link rel="stylesheet" href="assets.css">
+    <link rel="stylesheet" href="../../Shared/print.css">
+    <link rel="stylesheet" href="../../Shared/workflow.css">
+    <link rel="stylesheet" href="../../Shared/sidebar.css">
+    <link rel="stylesheet" href="../../Shared/responsive.css">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- ========================================
+         SIDEBAR
+    ========================================= -->
+
+<aside class="sidebar">
+
+    <!-- Sidebar Logo and Title -->
+    <div class="sidebar-brand">
+
+        <img
+            src="../Login/neu-logo.png"
+            alt="NEU Logo"
+            class="sidebar-logo"
+        >
+
+        <div class="sidebar-title">
+            <h2>Custodian Management System </h2>
+        </div>
+
+    </div>
+
+        <ul>
+            <li><a href="../Dashboard/dashboard.html">Dashboard</a></li>
+            <li><a href="../RequestManagement/requestmanagement.html">Request Management</a></li>
+            <li><a href="../InventoryManagement/inventorymanagement.html">Inventory Management</a></li>
+            <li class="active"><a href="../Assets/assets.html" aria-current="page">Assets</a></li>
+            <li><a href="../AnnualInventory/annualinventory.html">Annual Inventory</a></li>
+            <li><a href="../Issuance/issuance.html">Issuance</a></li>
+            <li><a href="../ReleaseQueue/releasequeue.html">Release Queue</a></li>
+            <li><a href="../PullOut/pullout.html">Pull-Out Management</a></li>
+            <li><a href="../Reports/reports.html">Reports</a></li>
+            <li><a href="../Users/users.html">Users</a></li>
+            <li><a href="../AuditTrail/audittrail.html">Audit Trail</a></li>
+            <li><a href="../Settings/settings.html">System Settings</a></li>
+            <li class="sidebar-logout"><a role="button" tabindex="0">Logout</a></li>
+        </ul>
+
+    </aside>
+
+
+    <!-- ========================================
+         MAIN CONTENT
+    ========================================= -->
+
+    <main class="main-content">
+
+        <!-- Navbar -->
+
+        <div class="navbar">
+
+            <h2>Assets Management</h2>
+
+            <span>Administrator</span>
+
+        </div>
+
+
+        <!-- ========================================
+             ASSET STATISTICS
+        ========================================= -->
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3>Total Assets</h3>
+
+                <p id="totalAssets">0</p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Consumables</h3>
+                <p id="consumableAssets">0</p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Non-consumables</h3>
+                <p id="nonConsumableAssets">0</p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Low Stock</h3>
+                <p id="lowStockAssets">0</p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================================
+             ASSET LIST
+        ========================================= -->
+
+        <div class="table-section">
+
+            <div class="table-header">
+
+                <h2>Asset List</h2>
+
+                <div class="table-actions">
+
+                    <input
+                        type="text"
+                        class="search-box"
+                        id="searchAsset"
+                        placeholder="Search Asset">
+
+                    <button type="button" class="scan-btn" id="importBtn">Import</button>
+
+                    <button type="button" class="scan-btn" id="scanBtn">Scan QR</button>
+
+                    <button type="button" class="scan-btn" id="printLabelsBtn">Print QR Labels</button>
+
+                    <button
+                        class="add-btn"
+                        id="addAssetBtn">
+
+                        + Add Asset
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Asset Table -->
+
+            <div class="table-container">
+
+                <table id="assetTable">
+
+                    <thead>
+                        <tr>
+                            <th>Asset ID</th>
+                            <th>Asset Name</th>
+                            <th>Type</th>
+                            <th>Category</th>
+                            <th>Stock</th>
+                            <th>Location</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+
+                    <tbody id="assetTableBody"></tbody>
+
+                </table>
+                <p id="noAssets" class="no-assets">No assets yet. Click "+ Add Asset" to start the inventory.</p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+
+<!-- ========================================
+     ADD / EDIT ASSET MODAL
+========================================= -->
+
+<div
+    class="modal-overlay"
+    id="assetModal">
+
+    <div class="asset-modal">
+
+        <!-- Modal Header -->
+
+        <div class="modal-header">
+
+            <h2 id="modalTitle">
+                Add Asset
+            </h2>
+
+            <button
+                class="close-btn"
+                id="closeModal">
+
+                &times;
+
+            </button>
+
+        </div>
+
+
+        <!-- Form -->
+
+        <form id="assetForm">
+
+            <!-- Asset Photo -->
+
+            <div class="photo-section">
+
+                <div
+                    class="photo-preview"
+                    id="photoPreview">
+
+                    <span>
+                        Asset Photo
+                    </span>
+
+                </div>
+
+                <input
+                    type="file"
+                    id="assetPhoto"
+                    accept="image/*">
+
+            </div>
+
+
+            <!-- Form Grid -->
+
+            <div class="form-grid">
+
+                <!-- Type -->
+                <div class="form-group full-width">
+                    <label for="assetType">Type</label>
+                    <select id="assetType">
+                        <option value="Non-consumable">Non-consumable (equipment, tracked one by one: laptop, projector, chair)</option>
+                        <option value="Consumable">Consumable (supplies that are used up: bond paper, ink)</option>
+                    </select>
+                </div>
+
+                <!-- Asset Name -->
+                <div class="form-group">
+                    <label for="assetName">Asset Name</label>
+                    <input type="text" id="assetName">
+                </div>
+
+                <!-- Asset ID -->
+                <div class="form-group">
+                    <label for="assetID">Asset ID</label>
+                    <input type="text" id="assetID" readonly>
+                </div>
+
+                <!-- Category -->
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category">
+                        <option value="">Select Category</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Equipment">Equipment</option>
+                        <option value="Furniture">Furniture</option>
+                        <option value="Office Supplies">Office Supplies</option>
+                        <option value="Audio Device">Audio Device</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <!-- Unit -->
+                <div class="form-group">
+                    <label for="unit">Unit</label>
+                    <input type="text" id="unit" value="pc" placeholder="pc, ream, box...">
+                </div>
+
+                <!-- Quantity (the label changes with the type) -->
+                <div class="form-group">
+                    <label for="quantity" id="quantityLabel">Total Quantity</label>
+                    <input type="number" id="quantity" min="0" value="1">
+                </div>
+
+                <!-- Unit price -->
+                <div class="form-group">
+                    <label for="unitPrice">Unit Price (optional)</label>
+                    <input type="number" id="unitPrice" min="0" step="0.01" placeholder="0.00">
+                </div>
+
+                <!-- Consumable only -->
+                <div class="form-group only-consumable">
+                    <label for="reorderLevel">Reorder Level (low stock warning)</label>
+                    <input type="number" id="reorderLevel" min="0" value="0">
+                </div>
+
+                <!-- Non-consumable only -->
+                <div class="form-group only-nonconsumable">
+                    <label for="brand">Brand</label>
+                    <input type="text" id="brand">
+                </div>
+
+                <div class="form-group only-nonconsumable">
+                    <label for="model">Model</label>
+                    <input type="text" id="model">
+                </div>
+
+                <div class="form-group only-nonconsumable">
+                    <label for="serialNumber">Serial Number</label>
+                    <input type="text" id="serialNumber">
+                </div>
+
+                <div class="form-group only-nonconsumable">
+                    <label for="condition">Condition</label>
+                    <select id="condition">
+                        <option value="">Select Condition</option>
+                        <option value="New">New</option>
+                        <option value="Good">Good</option>
+                        <option value="Fair">Fair</option>
+                        <option value="Poor">Poor</option>
+                        <option value="Damaged">Damaged</option>
+                    </select>
+                </div>
+
+                <div class="form-group only-nonconsumable">
+                    <label for="issuedQty">Issued (given to a person)</label>
+                    <input type="number" id="issuedQty" min="0" value="0">
+                </div>
+
+                <div class="form-group only-nonconsumable">
+                    <label for="maintenanceQty">Under Maintenance (pulled out)</label>
+                    <input type="number" id="maintenanceQty" min="0" value="0">
+                </div>
+
+                <!-- For the Annual Inventory (non-consumable) -->
+                <div class="form-group only-nonconsumable">
+                    <label for="assetUnit">Section / Unit</label>
+                    <select id="assetUnit">
+                        <option value="">-- None --</option>
+                    </select>
+                </div>
+
+                <div class="form-group only-nonconsumable">
+                    <label for="iinShown">IIN (automatic)</label>
+                    <input type="text" id="iinShown" readonly placeholder="Given when you save">
+                </div>
+
+                <div class="form-group only-nonconsumable">
+                    <label for="make">Make</label>
+                    <input type="text" id="make" placeholder="e.g. window type, laminated">
+                </div>
+
+                <div class="form-group only-nonconsumable">
+                    <label for="color">Color</label>
+                    <input type="text" id="color">
+                </div>
+
+                <div class="form-group only-nonconsumable">
+                    <label for="size">Size</label>
+                    <input type="text" id="size" placeholder='e.g. 22", 2 hp, 4x8'>
+                </div>
+
+                <div class="form-group only-nonconsumable">
+                    <label for="dateAssigned">Date (acquired or assigned)</label>
+                    <input type="date" id="dateAssigned">
+                </div>
+
+                <div class="form-group full-width only-nonconsumable">
+                    <label for="remarks">Remarks</label>
+                    <input type="text" id="remarks" placeholder="e.g. good condition">
+                </div>
+
+                <!-- Location -->
+                <div class="form-group full-width">
+                    <label for="location">Location</label>
+                    <input type="text" id="location">
+                </div>
+
+                <p class="form-note only-nonconsumable">
+                    To correct the count of issued units, edit <strong>Issued</strong>. When a repair is done, lower <strong>Under Maintenance</strong>.
+                    The units left are <strong>Available</strong>.
+                </p>
+
+            </div>
+
+            <!-- Modal Buttons -->
+
+            <div class="modal-buttons">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    id="cancelBtn">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    type="submit"
+                    class="save-btn">
+
+                    Save Asset
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- ========================================
+     IMPORT FROM EXCEL (NON-CONSUMABLE ITEMS)
+========================================= -->
+<div class="modal-overlay" id="importModal">
+    <div class="asset-modal import-modal">
+
+        <div class="modal-header">
+            <h2>Import items from Excel</h2>
+            <button type="button" class="close-btn" id="closeImport">&times;</button>
+        </div>
+
+        <p class="import-help">
+            Copy the table from Excel (with the first row of titles) and paste it here, or choose a .csv file.
+            Every row becomes a <strong>non-consumable</strong> item, and the IIN numbers are given in the order of the rows.
+            Titles that are understood: <em>Unit Code, Item, Qty, Brand, Model, Make, Color, Size, Serial, Unit Price, Date, Condition, Remarks, Category</em>.
+            The Qty can be like "41 units". The <em>Unit Code</em> is the code of a Section / Unit (for example MRm102).
+        </p>
+
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="importUnit">Section / Unit for all rows (if the table has no Unit Code)</label>
+                <select id="importUnit"></select>
+            </div>
+            <div class="form-group">
+                <label for="importFile">Or choose a .csv file</label>
+                <input type="file" id="importFile" accept=".csv,.txt">
+            </div>
+            <div class="form-group full-width">
+                <label for="importText">Paste the table here</label>
+                <textarea id="importText" class="import-text" placeholder="Item&#9;Qty&#9;Brand&#9;Remarks&#10;Monitor&#9;41 units&#9;Viewsonic&#9;good condition"></textarea>
+            </div>
+        </div>
+
+        <div id="importResult" class="import-result"></div>
+
+        <div class="modal-buttons">
+            <button type="button" class="cancel-btn" id="templateBtn">Download template</button>
+            <button type="button" class="cancel-btn" id="checkImport">Check</button>
+            <button type="button" class="save-btn" id="runImport" disabled>Import</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- ========================================
+     ASSET QR CODE MODAL
+========================================= -->
+<div class="modal-overlay" id="qrModal">
+    <div class="asset-modal qr-modal">
+
+        <div class="modal-header">
+            <h2>Asset QR Code</h2>
+            <button type="button" class="close-btn" id="closeQr">&times;</button>
+        </div>
+
+        <div class="qr-body">
+            <div class="qr-image" id="qrImage"></div>
+            <div class="qr-info" id="qrInfo"></div>
+        </div>
+
+        <div class="modal-buttons">
+            <button type="button" class="cancel-btn" id="qrEditBtn">Edit</button>
+            <button type="button" class="cancel-btn" id="qrDownloadBtn">Download QR</button>
+            <button type="button" class="save-btn" id="qrPrintBtn">Print Label</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- PRINT AREA (QR labels) -->
+<div id="printArea"></div>
+
+<script src="../../Shared/users.js"></script>
+<script src="../../Shared/settings.js"></script>
+<script src="../../Shared/permissions.js"></script>
+<script src="../../Shared/audit.js"></script>
+<script src="../../Shared/stock.js"></script>
+<script src="../../Shared/inventory.js"></script>
+<script src="../../Shared/units.js"></script>
+<script src="../../Shared/qr.js"></script>
+<script src="../../Shared/scanner.js"></script>
+<script src="../../Shared/realtime.js"></script>
+<script src="../../Shared/esign.js"></script>
+<script src="../../Shared/workflow.js"></script>
+<script src="../../Shared/mockdata.js"></script>
+<script src="../../Shared/adminnav.js"></script>
+<script src="../../Shared/chatbot.js"></script>
+<script src="../../Shared/sidebar.js"></script>
+<script src="../../Shared/responsive.js"></script>
+<script src="assets.js"></script>
+<script src="assetunits.js"></script>
+
+</body>
+
+</html>

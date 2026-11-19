@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Requests</title>
+
+    <link
+        rel="stylesheet"
+        href="myrequests.css"
+    >
+    <link rel="stylesheet" href="../../Shared/fonts.css">
+    <link rel="stylesheet" href="../../Shared/workflow.css">
+    <link rel="stylesheet" href="../../Shared/sidebar.css">
+    <link rel="stylesheet" href="../../Shared/responsive.css">
+
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <!-- ========================================
+             SIDEBAR
+        ======================================== -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-brand">
+
+                <img
+                    src="../../Admin/Login/neu-logo.png"
+                    alt="NEU Logo"
+                    class="sidebar-logo"
+                >
+
+                <div class="sidebar-title">
+
+                    <h2>
+                        Custodian Management System
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- MENU -->
+
+            <ul>
+            <li><a href="../RequesterDashboard/dashboard.html">Dashboard</a></li>
+            <li><a href="../Request/request.html">Create Requisition</a></li>
+            <li class="active"><a href="../RequesterMyRequests/myrequests.html" aria-current="page">My Requests</a></li>
+            <li><a href="../RequesterHistory/history.html">History</a></li>
+            <li><a href="../RequesterNotifications/notifications.html">Notifications</a></li>
+            <li><a href="../RequesterInventory/inventory.html">My Inventory</a></li>
+            <li class="sidebar-logout"><a role="button" tabindex="0">Logout</a></li>
+        </ul>
+
+        </aside>
+
+
+        <!-- ========================================
+             MAIN CONTENT
+        ======================================== -->
+
+        <main class="main-content">
+
+
+            <!-- ========================================
+                 NAVBAR
+            ======================================== -->
+
+            <div class="navbar">
+
+                <h2>
+                    My Requests
+                </h2>
+
+                <span>
+                    Requester
+                </span>
+
+            </div>
+
+
+            <!-- ========================================
+                 REQUEST SUMMARY CARDS
+            ======================================== -->
+
+            <div class="cards">
+
+                <div class="card">
+
+                    <h3>
+                        Total Requests
+                    </h3>
+
+                    <p id="totalRequests">
+                        0
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>
+                        Pending
+                    </h3>
+
+                    <p id="pendingRequests">
+                        0
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>
+                        Approved / Released
+                    </h3>
+
+                    <p id="approvedRequests">
+                        0
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>
+                        Rejected
+                    </h3>
+
+                    <p id="rejectedRequests">
+                        0
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================================
+                 REQUEST TABLE
+            ======================================== -->
+
+            <section class="table-section">
+
+                <div class="table-header">
+
+                    <div>
+
+                        <h2>
+                            Request History
+                        </h2>
+
+                        <p>
+                            View and monitor your submitted forms.
+                        </p>
+
+                    </div>
+
+
+                    <input
+                        type="text"
+                        id="searchBox"
+                        class="search-box"
+                        placeholder="Search form..."
+                    >
+
+                </div>
+
+
+                <!-- ========================================
+                     TABLE
+                ======================================== -->
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>
+                                    Form
+                                </th>
+                                <th>
+                                    Control No.
+                                </th>
+                                <th>
+                                    Details
+                                </th>
+                                <th>
+                                    Items
+                                </th>
+                                <th>
+                                    Date Submitted
+                                </th>
+                                <th>
+                                    Status
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+
+
+                        <tbody id="requestTableBody">
+
+                            <!-- Requests will be loaded by JavaScript -->
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- ========================================
+                     NO REQUESTS
+                ======================================== -->
+
+                <div
+                    class="no-requests"
+                    id="noRequests"
+                >
+
+                    <div class="no-request-icon">
+                        📋
+                    </div>
+
+                    <h3>
+                        No Requests Found
+                    </h3>
+
+                    <p>
+                        You have not submitted any forms yet.
+                    </p>
+
+                    <button
+                        class="request-btn"
+                        onclick="goToPage('Request')"
+                    >
+                        Make a Request
+                    </button>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+    <!-- ========================================
+         REQUEST DETAILS MODAL
+    ======================================== -->
+
+    <div
+        class="modal-overlay"
+        id="modalOverlay"
+    >
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <h2>
+                    Request Details
+                </h2>
+
+                <button
+                    class="close-btn"
+                    onclick="closeModal()"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div
+                class="modal-body"
+                id="modalBody"
+            >
+
+                <!-- Details loaded by JavaScript -->
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button
+                    class="close-modal-btn"
+                    onclick="closeModal()"
+                >
+                    Close
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="../../Shared/stock.js"></script>
+<script src="../../Shared/units.js"></script>
+<script src="../../Shared/signatures.js"></script>
+<script src="../../Shared/users.js"></script>
+<script src="../../Shared/settings.js"></script>
+<script src="../../Shared/permissions.js"></script>
+<script src="../../Shared/audit.js"></script>
+<script src="../../Shared/realtime.js"></script>
+<script src="../../Shared/esign.js"></script>
+<script src="../../Shared/workflow.js"></script>
+<script src="../../Shared/mockdata.js"></script>
+<script src="../../Shared/chatbot.js"></script>
+<script src="../../Shared/sidebar.js"></script>
+<script src="../../Shared/responsive.js"></script>
+<script src="myrequests.js"></script>
+
+</body>
+
+</html>

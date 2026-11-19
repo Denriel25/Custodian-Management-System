@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requisition Review</title>
+    <link rel="stylesheet" href="../../Shared/fonts.css">
+    <link rel="stylesheet" href="../../Admin/Dashboard/dashboard.css">
+    <link rel="stylesheet" href="../../Shared/workflow.css">
+    <link rel="stylesheet" href="../../Shared/sidebar.css">
+    <link rel="stylesheet" href="../../Shared/responsive.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <img src="../../Admin/Login/neu-logo.png" alt="NEU Logo" class="sidebar-logo">
+            <div class="sidebar-title"><h2>Custodian Management System </h2></div>
+        </div>
+        <ul>
+            <li><a href="../AuditorDashboard/dashboard.html">Dashboard</a></li>
+            <li class="active"><a href="../RequisitionReview/review.html" aria-current="page">Requisition Review</a></li>
+            <li><a href="../ReviewHistory/history.html">Review History</a></li>
+            <li class="sidebar-logout"><a role="button" tabindex="0">Logout</a></li>
+        </ul>
+    </aside>
+    <main class="main-content">
+        <header class="navbar">
+            <h1>Requisition Review</h1>
+            <div class="profile"><span>Auditor</span></div>
+        </header>
+        <section class="wf-panel">
+            <h2>Requisition Review</h2>
+            <div class="wf-tools">
+                <input class="wf-input" id="qSearch" placeholder="Search number, department, requester...">
+                <select class="wf-select" id="qStatus">
+                    <option value="todo">Needs my action</option>
+                    <option value="all">All requisitions</option>
+                </select>
+                <button type="button" class="wf-btn" id="scanBtn">Scan Requisition QR</button>
+                <button type="button" class="wf-btn" id="mailBtn">Simulated emails</button>
+            </div>
+            <div id="loading" class="wf-loading">Loading requisitions...</div>
+            <div class="wf-tablewrap"><table class="wf-table"><thead><tr><th>Requisition No.</th><th>Department / Office</th><th>Requester</th><th>Items</th><th>Date</th><th>Status</th><th>Action</th></tr></thead><tbody id="qBody"></tbody></table></div>
+            <div class="wf-pager" id="qPager"></div>
+        </section>
+    </main>
+</div>
+<script src="../../Shared/users.js"></script>
+<script src="../../Shared/settings.js"></script>
+<script src="../../Shared/permissions.js"></script>
+<script src="../../Shared/audit.js"></script>
+<script src="../../Shared/qr.js"></script>
+<script src="../../Shared/stock.js"></script>
+<script src="../../Shared/units.js"></script>
+<script src="../../Shared/esign.js"></script>
+<script src="../../Shared/realtime.js"></script>
+<script src="../../Shared/workflow.js"></script>
+<script src="../../Shared/mockdata.js"></script>
+<script src="../../Shared/chatbot.js"></script>
+<script src="../../Shared/sidebar.js"></script>
+<script src="../../Shared/responsive.js"></script>
+<script src="../auditor-common.js"></script>
+<script src="../../Shared/scanner.js"></script>
+<script src="review.js"></script>
+</body>
+</html>

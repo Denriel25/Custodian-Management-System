@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Release Queue</title>
+    <link rel="stylesheet" href="../../Shared/fonts.css">
+    <link rel="stylesheet" href="../Dashboard/dashboard.css">
+    <link rel="stylesheet" href="../../Shared/print.css">
+    <link rel="stylesheet" href="../../Shared/workflow.css">
+    <link rel="stylesheet" href="../../Shared/sidebar.css">
+    <link rel="stylesheet" href="../../Shared/responsive.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <img src="../Login/neu-logo.png" alt="NEU Logo" class="sidebar-logo">
+            <div class="sidebar-title"><h2>Custodian Management System </h2></div>
+        </div>
+        <ul>
+            <li><a href="../Dashboard/dashboard.html">Dashboard</a></li>
+            <li><a href="../RequestManagement/requestmanagement.html">Request Management</a></li>
+            <li><a href="../InventoryManagement/inventorymanagement.html">Inventory Management</a></li>
+            <li><a href="../Assets/assets.html">Assets</a></li>
+            <li><a href="../AnnualInventory/annualinventory.html">Annual Inventory</a></li>
+            <li><a href="../Issuance/issuance.html">Issuance</a></li>
+            <li class="active"><a href="../ReleaseQueue/releasequeue.html" aria-current="page">Release Queue</a></li>
+            <li><a href="../PullOut/pullout.html">Pull-Out Management</a></li>
+            <li><a href="../Reports/reports.html">Reports</a></li>
+            <li><a href="../Users/users.html">Users</a></li>
+            <li><a href="../AuditTrail/audittrail.html">Audit Trail</a></li>
+            <li><a href="../Settings/settings.html">System Settings</a></li>
+            <li class="sidebar-logout"><a role="button" tabindex="0">Logout</a></li>
+        </ul>
+    </aside>
+    <main class="main-content">
+        <header class="navbar"><h1>Ready-for-Release Queue</h1><div class="profile"><span>Admin</span></div></header>
+
+        <section class="cards">
+            <div class="card"><h3>Ready for Release</h3><p id="cReady">0</p></div>
+            <div class="card"><h3>Partially Released</h3><p id="cPartial">0</p></div>
+            <div class="card"><h3>Items Still to Release</h3><p id="cItems">0</p></div>
+            <div class="card"><h3>Released Today</h3><p id="cToday">0</p></div>
+        </section>
+
+        <section class="wf-panel">
+            <h2>Requisitions waiting for release</h2>
+            <p class="wf-note">Only requisitions with the Department Head, Auditor and Director signatures complete, the Director approval, and items still to release are listed.
+                <span id="roleNote"></span></p>
+            <div class="wf-tools">
+                <input class="wf-input" id="qSearch" placeholder="Search number, requester, department, item...">
+                <select class="wf-select" id="qStatus"><option value="all">All</option><option>Ready for Release</option><option>Partially Released</option></select>
+                <input class="wf-input" type="date" id="qFrom" title="Approved from"><input class="wf-input" type="date" id="qTo" title="Approved to">
+            </div>
+            <div class="wf-tablewrap"><table class="wf-table"><thead><tr><th>Requisition No. / Date</th><th>Requester / Department</th><th>Items (approved / released / remaining)</th><th>Signatures</th><th>Status</th><th>Action</th></tr></thead><tbody id="qBody"></tbody></table></div>
+            <div class="wf-pager" id="qPager"></div>
+        </section>
+        <p class="wf-note">Signatures: DH = Department Head, SA = School Auditor, DIR = Director, APR = Director approval. Frontend simulation with demo data. A QR code only opens a requisition; it never authorizes a release.</p>
+    </main>
+</div>
+<div id="printArea"></div>
+<script src="../../Shared/users.js"></script>
+<script src="../../Shared/settings.js"></script>
+<script src="../../Shared/permissions.js"></script>
+<script src="../../Shared/audit.js"></script>
+<script src="../../Shared/print.js"></script>
+<script src="../../Shared/qr.js"></script>
+<script src="../../Shared/stock.js"></script>
+<script src="../../Shared/units.js"></script>
+<script src="../../Shared/pullout.js"></script>
+<script src="../../Shared/realtime.js"></script>
+<script src="../../Shared/esign.js"></script>
+<script src="../../Shared/workflow.js"></script>
+<script src="../../Shared/release.js"></script>
+<script src="../../Shared/mockdata.js"></script>
+<script src="../../Shared/adminnav.js"></script>
+<script src="../../Shared/chatbot.js"></script>
+<script src="../../Shared/sidebar.js"></script>
+<script src="../../Shared/responsive.js"></script>
+<script src="releasequeue.js"></script>
+</body>
+</html>

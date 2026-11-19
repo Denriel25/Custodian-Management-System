@@ -1,0 +1,64 @@
+/* ========================================
+   NEU CUSTODIAN MANAGEMENT SYSTEM
+   SHARED SIDEBAR (Admin / Staff, Auditor and Requester)
+
+   One definition for every page, loaded after the page's own css and before responsive.css.
+   It fixes spacing, alignment, the brand title and keyboard/link behaviour.
+   It sets NO colors for hover/active (each side keeps its own theme: gold for Admin, green for Requester).
+   ======================================== */
+
+.sidebar-title { min-width: 0; }
+
+.sidebar-title h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    line-height: 23px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.sidebar ul { list-style: none; margin: 15px 0; padding: 0; }
+
+.sidebar ul li {
+    padding: 0;                 /* the link fills the whole item */
+    margin-bottom: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    line-height: 1.35;
+    cursor: pointer;
+}
+
+.sidebar ul li a {
+    display: block;
+    padding: 15px;
+    color: inherit;
+    text-decoration: none;
+    border-radius: 6px;
+    outline-offset: -2px;
+}
+
+.sidebar ul li a:focus-visible { outline: 2px solid currentColor; }
+
+/* desktop: the menu stays in view while the page scrolls */
+@media screen and (min-width: 901px) {
+    .sidebar {
+        position: sticky !important;
+        top: 0;
+        align-self: flex-start;
+        flex: 0 0 240px;
+        width: 240px;
+        min-width: 240px;
+        max-width: 240px;
+        height: 100vh !important;
+        min-height: 0 !important;
+        overflow-y: auto;
+        box-sizing: border-box;
+    }
+    .main-content { margin-left: 0 !important; }
+}
+
+/* tablet and phone: the drawer itself comes from responsive.css/js; make the touch targets comfortable */
+@media screen and (max-width: 900px) {
+    .sidebar ul li a { padding: 16px 15px; }
+}

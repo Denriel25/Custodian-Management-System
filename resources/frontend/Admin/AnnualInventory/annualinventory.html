@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Annual Inventory</title>
+
+    <link rel="stylesheet" href="../../Shared/fonts.css">
+    <link rel="stylesheet" href="annualinventory.css">
+    <link rel="stylesheet" href="../../Shared/print.css">
+    <link rel="stylesheet" href="../../Shared/workflow.css">
+    <link rel="stylesheet" href="../../Shared/sidebar.css">
+    <link rel="stylesheet" href="../../Shared/responsive.css">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- ========================================
+         SIDEBAR
+    ========================================= -->
+
+<aside class="sidebar">
+
+    <!-- Sidebar Logo and Title -->
+    <div class="sidebar-brand">
+
+        <img
+            src="../Login/neu-logo.png"
+            alt="NEU Logo"
+            class="sidebar-logo"
+        >
+
+        <div class="sidebar-title">
+            <h2>Custodian Management System </h2>
+        </div>
+
+    </div>
+
+        <ul>
+            <li><a href="../Dashboard/dashboard.html">Dashboard</a></li>
+            <li><a href="../RequestManagement/requestmanagement.html">Request Management</a></li>
+            <li><a href="../InventoryManagement/inventorymanagement.html">Inventory Management</a></li>
+            <li><a href="../Assets/assets.html">Assets</a></li>
+            <li class="active"><a href="../AnnualInventory/annualinventory.html" aria-current="page">Annual Inventory</a></li>
+            <li><a href="../Issuance/issuance.html">Issuance</a></li>
+            <li><a href="../ReleaseQueue/releasequeue.html">Release Queue</a></li>
+            <li><a href="../PullOut/pullout.html">Pull-Out Management</a></li>
+            <li><a href="../Reports/reports.html">Reports</a></li>
+            <li><a href="../Users/users.html">Users</a></li>
+            <li><a href="../AuditTrail/audittrail.html">Audit Trail</a></li>
+            <li><a href="../Settings/settings.html">System Settings</a></li>
+            <li class="sidebar-logout"><a role="button" tabindex="0">Logout</a></li>
+        </ul>
+
+    </aside>
+
+
+    <!-- ========================================
+         MAIN CONTENT
+    ========================================= -->
+
+    <main class="main-content">
+
+        <!-- NAVBAR -->
+        <div class="navbar">
+            <h2>Annual Inventory</h2>
+            <span>Administrator</span>
+        </div>
+
+        <!-- SUMMARY -->
+        <div class="cards">
+            <div class="card">
+                <h3>Reports</h3>
+                <p id="aiTotal">0</p>
+            </div>
+            <div class="card">
+                <h3>Draft</h3>
+                <p id="aiDraft">0</p>
+            </div>
+            <div class="card">
+                <h3>Counted (Verified)</h3>
+                <p id="aiVerified">0</p>
+            </div>
+            <div class="card">
+                <h3>Certified</h3>
+                <p id="aiCertified">0</p>
+            </div>
+        </div>
+
+        <!-- LIST -->
+        <div class="table-section">
+
+            <div class="table-header">
+                <h2>Annual Inventory Reports</h2>
+
+                <div class="filters">
+                    <select id="yearFilter" class="filter-select"></select>
+                    <select id="statusFilter" class="filter-select">
+                        <option value="all">All status</option>
+                        <option value="Draft">Draft</option>
+                        <option value="Verified">Verified</option>
+                        <option value="Certified">Certified</option>
+                    </select>
+                    <input type="text" id="searchBox" class="search-box" placeholder="Search report">
+                    <button type="button" class="scan-btn" id="unitsBtn">Sections / Units</button>
+                    <button type="button" class="add-btn" id="newBtn">+ New Annual Inventory</button>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Section / Unit</th>
+                            <th>Department</th>
+                            <th>Custodian</th>
+                            <th>Items</th>
+                            <th>Total Amount</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="aiBody"></tbody>
+                </table>
+            </div>
+
+            <p id="noReports" class="no-assets">
+                No Annual Inventory yet. First add the Sections / Units, give the items a Section / Unit in Assets,
+                then click "+ New Annual Inventory".
+            </p>
+        </div>
+
+    </main>
+</div>
+
+
+<!-- ========================================
+     NEW ANNUAL INVENTORY
+========================================= -->
+<div class="modal-overlay" id="newModal">
+    <div class="asset-modal">
+
+        <div class="modal-header">
+            <h2>New Annual Inventory</h2>
+            <button type="button" class="close-btn" id="closeNew">&times;</button>
+        </div>
+
+        <div class="form-grid" style="padding:10px 0 20px">
+            <div class="form-group">
+                <label for="newYear">Year</label>
+                <input type="number" id="newYear" min="2000" max="2100">
+            </div>
+            <div class="form-group">
+                <label for="newUnit">Section / Unit</label>
+                <select id="newUnit"></select>
+            </div>
+            <p class="form-note" style="display:block">
+                The list is copied from the non-consumable items of the Section / Unit (in Assets). The copy does not change later, so it
+                keeps what was counted that year.
+            </p>
+        </div>
+
+        <div class="modal-buttons">
+            <button type="button" class="cancel-btn" id="cancelNew">Cancel</button>
+            <button type="button" class="save-btn" id="createBtn">Create</button>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ========================================
+     SECTIONS / UNITS
+========================================= -->
+<div class="modal-overlay" id="unitsModal">
+    <div class="asset-modal ai-wide">
+
+        <div class="modal-header">
+            <h2>Sections / Units</h2>
+            <button type="button" class="close-btn" id="closeUnits">&times;</button>
+        </div>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Department</th>
+                        <th>Section / Unit</th>
+                        <th>Custodian</th>
+                        <th>Job Title</th>
+                        <th>Items</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="unitsBody"></tbody>
+            </table>
+            <p id="noUnits" class="no-assets">No Section / Unit yet. Add the first one below.</p>
+        </div>
+
+        <h3 class="ai-sub" id="unitFormTitle">Add a Section / Unit</h3>
+
+        <div class="form-grid" id="unitForm">
+            <div class="form-group">
+                <label for="uCode">Code (used in the IIN)</label>
+                <input type="text" id="uCode" placeholder="e.g. MRm102">
+            </div>
+            <div class="form-group">
+                <label for="uDept">Department</label>
+                <input type="text" id="uDept" placeholder="e.g. DISD">
+            </div>
+            <div class="form-group">
+                <label for="uName">Section / Unit</label>
+                <input type="text" id="uName" placeholder="e.g. Computer Lab / Room 102">
+            </div>
+            <div class="form-group">
+                <label for="uCustodian">Custodian (Requester account)</label>
+                <select id="uCustodian"></select>
+            </div>
+            <div class="form-group full-width">
+                <label for="uJob">Job Title of the custodian</label>
+                <input type="text" id="uJob" placeholder="e.g. Laboratory In-charge">
+            </div>
+        </div>
+
+        <div class="modal-buttons">
+            <button type="button" class="cancel-btn" id="uCancel">Clear</button>
+            <button type="button" class="save-btn" id="uSave">Save Section / Unit</button>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ========================================
+     ONE ANNUAL INVENTORY
+========================================= -->
+<div class="modal-overlay" id="reportModal">
+    <div class="asset-modal ai-wide">
+
+        <div class="modal-header">
+            <h2 id="reportTitle">Annual Inventory</h2>
+            <button type="button" class="close-btn" id="closeReport">&times;</button>
+        </div>
+
+        <div id="reportInfo" class="ai-info"></div>
+
+        <div class="table-wrap">
+            <table id="linesTable">
+                <thead>
+                    <tr>
+                        <th>IIN</th>
+                        <th>Item</th>
+                        <th>Description</th>
+                        <th>Qty (records)</th>
+                        <th>Counted</th>
+                        <th>Unit Price</th>
+                        <th>Amount</th>
+                        <th>Remarks</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="linesBody"></tbody>
+            </table>
+        </div>
+
+        <p class="ai-total">Total amount: <strong id="reportTotal">0.00</strong></p>
+
+        <div id="addLineBox" class="ai-addline">
+            <h3 class="ai-sub">Add a line found during the count (not in Assets)</h3>
+            <div class="form-grid">
+                <div class="form-group"><label for="mItem">Item</label><input type="text" id="mItem"></div>
+                <div class="form-group"><label for="mQty">Qty</label><input type="number" id="mQty" min="1" value="1"></div>
+                <div class="form-group"><label for="mUnit">Unit</label><input type="text" id="mUnit" value="pc"></div>
+                <div class="form-group"><label for="mBrand">Brand</label><input type="text" id="mBrand"></div>
+                <div class="form-group"><label for="mModel">Model</label><input type="text" id="mModel"></div>
+                <div class="form-group"><label for="mMake">Make</label><input type="text" id="mMake"></div>
+                <div class="form-group"><label for="mColor">Color</label><input type="text" id="mColor"></div>
+                <div class="form-group"><label for="mSize">Size</label><input type="text" id="mSize"></div>
+                <div class="form-group"><label for="mSerial">Serial #</label><input type="text" id="mSerial"></div>
+                <div class="form-group"><label for="mPrice">Unit Price</label><input type="number" id="mPrice" min="0" step="0.01"></div>
+                <div class="form-group"><label for="mRemarks">Remarks</label><input type="text" id="mRemarks"></div>
+            </div>
+            <button type="button" class="scan-btn" id="addLineBtn">+ Add line</button>
+        </div>
+
+        <p class="form-note" id="reportNote" style="display:block"></p>
+
+        <div class="modal-buttons" id="reportButtons"></div>
+
+    </div>
+</div>
+
+<!-- PRINT AREA (the paper form) -->
+<div id="printArea"></div>
+
+<script src="../../Shared/permissions.js"></script>
+<script src="../../Shared/print.js"></script>
+<script src="../../Shared/audit.js"></script>
+<script src="../../Shared/users.js"></script>
+<script src="../../Shared/settings.js"></script>
+<script src="../../Shared/stock.js"></script>
+<script src="../../Shared/inventory.js"></script>
+<script src="../../Shared/units.js"></script>
+<script src="../../Shared/realtime.js"></script>
+<script src="../../Shared/esign.js"></script>
+<script src="../../Shared/workflow.js"></script>
+<script src="../../Shared/mockdata.js"></script>
+<script src="../../Shared/adminnav.js"></script>
+<script src="../../Shared/chatbot.js"></script>
+<script src="../../Shared/sidebar.js"></script>
+<script src="../../Shared/responsive.js"></script>
+<script src="annualinventory.js"></script>
+</body>
+</html>
